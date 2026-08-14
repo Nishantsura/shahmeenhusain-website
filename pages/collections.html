@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections — Shahmeen Husain</title>
+  <meta name="description" content="Shop the complete Shahmeen Husain collection. Lehengas, sarees, gowns, jumpsuits, dresses and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header header--scrolled" id="header">
+    <div class="header__inner">
+      <a href="../index.html" class="header__logo">SHAHMEEN HUSAIN</a>
+      <nav class="header__nav" id="mainNav">
+        <div class="header__nav-item">
+          <a href="collections.html" class="header__nav-link">
+            SHOP
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="mega-menu">
+            <div class="mega-menu__inner">
+              <div class="mega-menu__column">
+                <h4>Womenswear</h4>
+                <ul>
+                  <li><a href="collections.html?cat=bridal">Bridal Collection</a></li>
+                  <li><a href="collections.html?cat=wedding">Wedding Edit</a></li>
+                  <li><a href="collections.html?cat=festive">Festive Wear</a></li>
+                  <li><a href="collections.html?cat=cocktail">Cocktail Edit</a></li>
+                  <li><a href="collections.html?cat=celebrities">Celebrities</a></li>
+                </ul>
+              </div>
+              <div class="mega-menu__column">
+                <h4>Menswear</h4>
+                <ul>
+                  <li><a href="collections.html?cat=men-wedding">Wedding Collection</a></li>
+                  <li><a href="collections.html?cat=men-festive">Festive Wear</a></li>
+                  <li><a href="collections.html?cat=men-classic">Classic Edit</a></li>
+                </ul>
+              </div>
+              <div class="mega-menu__column">
+                <h4>By Silhouette</h4>
+                <ul>
+                  <li><a href="collections.html?sil=lehenga">Lehenga Sets</a></li>
+                  <li><a href="collections.html?sil=gowns">Gowns</a></li>
+                  <li><a href="collections.html?sil=sarees">Sarees</a></li>
+                  <li><a href="collections.html?sil=jumpsuits">Jumpsuits</a></li>
+                  <li><a href="collections.html?sil=dresses">Dresses</a></li>
+                  <li><a href="collections.html?sil=sets">Sets</a></li>
+                </ul>
+              </div>
+              <div class="mega-menu__column">
+                <a href="collections.html" class="mega-menu__featured">
+                  <div class="placeholder-img">Newest Releases</div>
+                  <span class="mega-menu__featured-label">Discover</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__nav-item">
+          <a href="discover.html" class="header__nav-link">DISCOVER</a>
+        </div>
+        <div class="header__nav-item">
+          <a href="contact.html" class="header__nav-link">CONTACT</a>
+        </div>
+      </nav>
+      <div class="header__actions">
+        <button class="header__icon" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="#" class="header__icon" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+        <button class="header__icon" id="cartToggle" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="header__cart-count" id="cartCount">0</span>
+        </button>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu__nav">
+      <div>
+        <a href="#" class="mobile-menu__link" data-submenu="shop-mobile">
+          SHOP
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <div class="mobile-menu__submenu" id="shop-mobile">
+          <a href="collections.html?sil=lehenga">Lehenga Sets</a>
+          <a href="collections.html?sil=gowns">Gowns</a>
+          <a href="collections.html?sil=sarees">Sarees</a>
+          <a href="collections.html?sil=jumpsuits">Jumpsuits</a>
+          <a href="collections.html?sil=dresses">Dresses</a>
+          <a href="collections.html?sil=sets">Sets</a>
+          <a href="collections.html?cat=men-wedding">Menswear</a>
+        </div>
+      </div>
+      <a href="discover.html" class="mobile-menu__link">DISCOVER</a>
+      <a href="contact.html" class="mobile-menu__link">CONTACT</a>
+      <a href="#" class="mobile-menu__link">ACCOUNT</a>
+    </nav>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="searchModal">
+    <button class="search-modal__close" id="searchClose" aria-label="Close search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="search-modal__inner">
+      <form class="search-modal__form">
+        <input type="text" class="search-modal__input" placeholder="Search..." autocomplete="off">
+        <button type="submit" aria-label="Search">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer__header">
+      <h3 class="cart-drawer__title">Your Cart</h3>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Close cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="cart-drawer__body">
+      <div class="cart-drawer__empty">
+        <p>Your cart is empty</p>
+        <a href="collections.html" class="btn btn--small">Continue Shopping</a>
+      </div>
+    </div>
+    <div class="cart-drawer__footer"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="collections-header">
+      <div class="container">
+        <h1 class="collections-header__title" id="collectionTitle">All Collections</h1>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="collections-filter">
+        <div class="collections-filter__tabs">
+          <button class="collections-filter__tab active" data-filter="all">All</button>
+          <button class="collections-filter__tab" data-filter="lehenga">Lehengas</button>
+          <button class="collections-filter__tab" data-filter="saree">Sarees</button>
+          <button class="collections-filter__tab" data-filter="gown">Gowns</button>
+          <button class="collections-filter__tab" data-filter="jumpsuit">Jumpsuits</button>
+          <button class="collections-filter__tab" data-filter="dress">Dresses</button>
+          <button class="collections-filter__tab" data-filter="set">Sets</button>
+          <button class="collections-filter__tab" data-filter="menswear">Menswear</button>
+        </div>
+        <div class="collections-filter__sort">
+          <span>Sort by:</span>
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+
+        <!-- Product 1 -->
+        <div class="product-card fade-in" data-category="lehenga" data-price="48000">
+          <a href="product.html?id=1">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#D4C5B2,#BCA98F);">Lehenga Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Aria Lehenga Set</h3>
+            <p class="product-card__price">Rs. 48,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card fade-in" data-category="lehenga" data-price="45000">
+          <a href="product.html?id=2">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#C9B8A5,#A8947D);">Lehenga Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Zara Bridal Lehenga</h3>
+            <p class="product-card__price">Rs. 45,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card fade-in" data-category="set" data-price="38000">
+          <a href="product.html?id=3">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#DDD0BF,#C4B39E);">Skirt Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Meera Skirt Set</h3>
+            <p class="product-card__price">Rs. 38,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card fade-in" data-category="lehenga" data-price="42000">
+          <a href="product.html?id=4">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#E8D9C6,#CEBDA7);">Lehenga Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Riya Lehenga Set</h3>
+            <p class="product-card__price">Rs. 42,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card fade-in" data-category="saree" data-price="35000">
+          <a href="product.html?id=5">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#B8A794,#9D8B77);">Saree</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Isha Bridal Saree</h3>
+            <p class="product-card__price">Rs. 35,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">Free Size</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card fade-in" data-category="gown" data-price="32000">
+          <a href="product.html?id=6">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#C2B3A0,#A69483);">Gown</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Anaya Gown</h3>
+            <p class="product-card__price">Rs. 32,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card fade-in" data-category="lehenga" data-price="28000">
+          <a href="product.html?id=7">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#D2C1AE,#B8A58F);">Lehenga Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Priya Festive Lehenga</h3>
+            <p class="product-card__price">Rs. 28,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card fade-in" data-category="saree" data-price="22000">
+          <a href="product.html?id=8">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#C8B9A6,#AE9D88);">Saree</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Noor Saree Set</h3>
+            <p class="product-card__price">Rs. 22,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">Free Size</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-card fade-in" data-category="jumpsuit" data-price="18000">
+          <a href="product.html?id=9">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#DED0BD,#C5B5A0);">Jumpsuit</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Sara Embroidered Jumpsuit</h3>
+            <p class="product-card__price">Rs. 18,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-card fade-in" data-category="dress" data-price="24000">
+          <a href="product.html?id=10">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#E5D7C5,#CCBDA8);">Dress</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Layla Cocktail Dress</h3>
+            <p class="product-card__price">Rs. 24,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card fade-in" data-category="set" data-price="15000">
+          <a href="product.html?id=11">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#B5A693,#9B8C78);">Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Diya Pants Set</h3>
+            <p class="product-card__price">Rs. 15,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card fade-in" data-category="gown" data-price="30000">
+          <a href="product.html?id=12">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#C5B6A3,#AB9C87);">Gown</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Amara Festive Gown</h3>
+            <p class="product-card__price">Rs. 30,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 13 - Menswear -->
+        <div class="product-card fade-in" data-category="menswear" data-price="25000">
+          <a href="product.html?id=13">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#A09080,#8A7A6A);">Sherwani</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Arjun Sherwani Set</h3>
+            <p class="product-card__price">Rs. 25,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 14 - Menswear -->
+        <div class="product-card fade-in" data-category="menswear" data-price="20000">
+          <a href="product.html?id=14">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#948474,#7E6E5E);">Kurta Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Kabir Kurta Set</h3>
+            <p class="product-card__price">Rs. 20,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="product-card fade-in" data-category="lehenga" data-price="40000">
+          <a href="product.html?id=15">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#DACBB8,#C0AF9A);">Lehenga Set</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Kiara Lehenga Set</h3>
+            <p class="product-card__price">Rs. 40,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="product-card fade-in" data-category="saree" data-price="26000">
+          <a href="product.html?id=16">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#BFAE9B,#A59484);">Saree</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Aisha Embroidered Saree</h3>
+            <p class="product-card__price">Rs. 26,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">Free Size</span>
+              <span class="product-card__size">Customise</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 17 -->
+        <div class="product-card fade-in" data-category="dress" data-price="19000">
+          <a href="product.html?id=17">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#D8CABC,#C0AE9E);">Dress</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Farah Midi Dress</h3>
+            <p class="product-card__price">Rs. 19,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 18 -->
+        <div class="product-card fade-in" data-category="jumpsuit" data-price="21000">
+          <a href="product.html?id=18">
+            <div class="product-card__image-wrap">
+              <div class="placeholder-img" style="background:linear-gradient(135deg,#C3B5A7,#A99B8D);">Jumpsuit</div>
+              <div class="product-card__quick-shop">Quick Shop</div>
+            </div>
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__name">Zoya Festive Jumpsuit</h3>
+            <p class="product-card__price">Rs. 21,000</p>
+            <div class="product-card__sizes">
+              <span class="product-card__size">XS</span>
+              <span class="product-card__size">S</span>
+              <span class="product-card__size">M</span>
+              <span class="product-card__size">L</span>
+              <span class="product-card__size">XL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <a href="../index.html" class="footer__logo">SHAHMEEN HUSAIN</a>
+          <p class="footer__tagline">Crafting timeless elegance through the art of embroidery and handcrafted ethnic wear.</p>
+          <div class="footer__social" style="margin-top:24px;">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="collections.html?cat=bridal">Bridal</a></li>
+              <li><a href="collections.html?cat=wedding">Wedding Edit</a></li>
+              <li><a href="collections.html?cat=festive">Festive</a></li>
+              <li><a href="collections.html?cat=cocktail">Cocktail</a></li>
+              <li><a href="collections.html?cat=men-wedding">Menswear</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Silhouettes</h4>
+            <ul>
+              <li><a href="collections.html?sil=lehenga">Lehenga Sets</a></li>
+              <li><a href="collections.html?sil=gowns">Gowns</a></li>
+              <li><a href="collections.html?sil=sarees">Sarees</a></li>
+              <li><a href="collections.html?sil=jumpsuits">Jumpsuits</a></li>
+              <li><a href="collections.html?sil=dresses">Dresses</a></li>
+              <li><a href="collections.html?sil=sets">Sets</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="discover.html">Our Story</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__right">
+          <div class="footer__col">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="#">Shipping Policy</a></li>
+              <li><a href="#">Returns & Exchange</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy; 2026 Shahmeen Husain. All rights reserved.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/+919XXXXXXXXX" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
