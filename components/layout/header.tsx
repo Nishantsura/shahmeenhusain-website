@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 import { useCart } from "@/components/commerce/cart-provider";
 import { SearchDialog } from "@/components/layout/search-dialog";
@@ -20,25 +26,27 @@ export function Header() {
   const isHome = pathname === "/";
   const { cart, setOpen } = useCart();
 
-  const [scrolled, setScrolled] = useState(!isHome);
   const navRef = useRef<HTMLElement>(null);
   const [spreadGap, setSpreadGap] = useState<number | null>(null);
+
+  /* Subscribing to an external browser value is exactly what
+     useSyncExternalStore is for — it avoids the extra render pass an
+     effect+setState would cost on every page load. */
+  const pastFold = useSyncExternalStore(
+    useCallback((onChange: () => void) => {
+      window.addEventListener("scroll", onChange, { passive: true });
+      return () => window.removeEventListener("scroll", onChange);
+    }, []),
+    () => window.scrollY > 80,
+    () => true, // server snapshot: assume scrolled, so the logo is present
+  );
+
+  const scrolled = isHome ? pastFold : true;
 
   const count = cart?.totalQuantity ?? 0;
   /* At the top of the home page the giant wordmark is the logo, so the
      header carries only its links — spread edge to edge. */
   const spread = isHome && !scrolled;
-
-  useEffect(() => {
-    if (!isHome) {
-      setScrolled(true);
-      return;
-    }
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
 
   /* Measure the gap that lands the links edge to edge. It depends on the
      rendered link widths, so it cannot be a fixed value. With

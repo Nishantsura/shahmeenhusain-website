@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Custom cursor — measured against fmrg.studio: a small solid arrowhead,
@@ -9,14 +9,15 @@ import { useEffect, useRef, useState } from "react";
  */
 export function Cursor() {
   const ref = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Touch and reduced-motion users keep the system cursor. No state
+    // here: the element is always rendered and hidden by CSS, which
+    // avoids a re-render just to learn what device we are on.
     if (!fine || reduced) return;
 
-    setEnabled(true);
     document.documentElement.classList.add("has-custom-cursor");
 
     let mx = window.innerWidth / 2;
@@ -61,13 +62,11 @@ export function Cursor() {
     };
   }, []);
 
-  if (!enabled) return null;
-
   return (
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[5000] opacity-0 text-brand transition-opacity duration-300 will-change-transform"
+      className="pointer-events-none fixed left-0 top-0 z-[5000] opacity-0 text-brand transition-opacity duration-300 will-change-transform max-[767px]:hidden motion-reduce:hidden [@media(pointer:coarse)]:hidden"
     >
       <svg width="11" height="15" viewBox="0 0 11 15" fill="none">
         <path
