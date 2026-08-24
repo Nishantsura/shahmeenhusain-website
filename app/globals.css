@@ -46,7 +46,35 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ---- Shahmeen Husain brand tokens ----
+     Ported from the legacy stylesheets (legacy/css/style.css,
+     legacy/css/motion.css). These drive the editorial layer; shadcn's
+     own tokens above drive the UI primitives. */
+  --color-paper: #F2EFE9;
+  --color-paper-deep: #E8E3DA;
+  --color-ink: #16150F;
+  --color-ink-soft: #4A4740;
+  --color-ink-mute: #8C877C;
+  --color-rule: rgba(22, 21, 15, 0.14);
+  --color-brand: #D8382C;        /* cursor + scroll cue */
+  --color-bronze: #8B7355;
+  --color-whatsapp: #25D366;
+
+  --font-display: var(--font-cormorant);
+  --font-serif: var(--font-cormorant-garamond);
+  --font-body: var(--font-montserrat);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  --tracking-wide-label: 0.18em;
+  --text-label: 0.6875rem;
+
+  --spacing-header: 72px;
+  --container-max: 1400px;
 }
+
 
 :root {
   --background: oklch(1 0 0);
@@ -121,10 +149,118 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
-    @apply font-sans;
+    @apply font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* NOTE: deliberately NOT `scroll-behavior: smooth`. Lenis drives the
+       scroll and calls scrollTo each frame; native smooth scrolling would
+       start a competing animation on every one of those calls. */
+  }
+  body {
+    @apply bg-paper text-ink;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  body.no-scroll {
+    overflow: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-ink;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+}
+/* ============================================
+   Editorial layer
+   ============================================ */
+
+@layer base {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+@layer components {
+  .container-edge {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .container-edge {
+      padding-inline: 40px;
+    }
+  }
+
+  /* Big uppercase display statement */
+  .statement {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 6.5vw, 6rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  .statement-tight {
+    font-size: clamp(1.75rem, 4.5vw, 4rem);
+    line-height: 1.05;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-wide-label);
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
+  }
+}
+
+/* Attribute marquee — continuous, so it earns its own layer */
+@keyframes attr-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.attr-track {
+  animation: attr-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .attr-track {
+    animation: none !important;
+  }
+
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: auto !important;
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(5px);
   }
 }
