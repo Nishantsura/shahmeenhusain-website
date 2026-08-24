@@ -1,0 +1,734 @@
+/* ============================================
+   SHAHMEEN HUSAIN — Editorial Section Layouts
+   Long-scroll homepage + shared page furniture.
+   Loaded after style.css, before motion.css.
+   ============================================ */
+
+body {
+  background-color: var(--paper, #F2EFE9);
+  color: var(--ink, #16150F);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max, 1400px);
+  margin-inline: auto;
+  padding-inline: var(--container-padding, 40px);
+}
+
+/* ============ 01 · HERO ============ */
+/* No photography here by design: the wordmark IS the identity, with a
+   single silk-ribbon ornament as the only image. Paper ground, ink type. */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper, #F2EFE9);
+  overflow: hidden;
+}
+
+/* ---- wordmark ---- */
+.hero__wordmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-inline: var(--container-padding, 40px);
+}
+
+.hero__word {
+  display: block;
+  overflow: hidden;
+  font-family: var(--font-display, 'Cormorant', Georgia, serif);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 11.5vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  color: var(--ink, #16150F);
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__word > span {
+  display: block;
+  transform: translateY(108%);
+  transition: transform 1.5s var(--ease-out-expo, ease);
+}
+
+/* ---- centre ornament: the campaign figure ---- */
+.hero__ornament {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  /* negative margins tuck the wordmark behind her */
+  margin-inline: clamp(-8rem, -9vw, -3rem);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(16px) scale(0.985);
+  transition: opacity 1.7s ease 0.3s,
+              transform 1.9s var(--ease-out-expo, ease) 0.3s;
+}
+
+.hero__ornament-figure {
+  position: relative;
+  z-index: 1;
+  height: clamp(20rem, 52vh, 34rem);
+  width: auto;
+  object-fit: contain;
+  /* grounds her on the paper instead of floating flat on it */
+  filter: drop-shadow(0 26px 42px rgba(74, 52, 40, 0.20));
+  animation: figure-breathe 14s ease-in-out infinite;
+  /* own layer: otherwise the drop-shadow re-rasterises on every frame
+     of the breathe animation */
+  will-change: transform;
+}
+
+/* soft bloom so she sits in the paper rather than on it */
+.hero__ornament-glow {
+  position: absolute;
+  width: 78%;
+  height: 62%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse,
+              rgba(214, 176, 150, 0.24) 0%,
+              rgba(214, 176, 150, 0.09) 44%,
+              transparent 72%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+@keyframes figure-breathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+/* ---- studio line ---- */
+.hero__studio {
+  display: block;
+  overflow: hidden;
+  margin-top: clamp(6px, 1.4vh, 18px);
+}
+
+.hero__studio > span {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--label, 0.6875rem);
+  font-weight: 400;
+  letter-spacing: 0.62em;
+  text-indent: 0.62em;
+  text-transform: lowercase;
+  color: var(--ink-mute, #8C877C);
+  transform: translateY(110%);
+  transition: transform 1.3s var(--ease-out-expo, ease) 0.35s;
+}
+
+/* ---- entrance (fires once the intro curtain clears) ---- */
+.hero.is-entered .hero__word > span,
+.hero.is-entered .hero__studio > span { transform: translateY(0); }
+
+.hero.is-entered .hero__ornament {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero__word:nth-of-type(1) > span { transition-delay: 0.05s; }
+.hero__word:nth-of-type(2) > span { transition-delay: 0.16s; }
+
+/* ---- scroll cue: thin rule + arrowhead ---- */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(28px, 6vh, 64px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--accent, #BF4A33);
+  opacity: 0;
+  transition: opacity 1.2s ease 1.1s;
+}
+
+.hero.is-entered .hero__scroll { opacity: 1; }
+
+.hero__scroll-line {
+  width: 1px;
+  height: clamp(38px, 7vh, 66px);
+  background: currentColor;
+  transform-origin: top;
+  animation: scroll-draw 2.6s ease-in-out infinite;
+}
+
+.hero__scroll-head {
+  margin-top: -1px;
+  animation: scroll-draw 2.6s ease-in-out infinite;
+}
+
+@keyframes scroll-draw {
+  0%, 100% { opacity: 0.45; transform: translateY(0); }
+  50%      { opacity: 1;    transform: translateY(5px); }
+}
+
+/* ============ 02 · STICKY CAMPAIGN SCENE ============ */
+.sticky-scene {
+  position: relative;
+  background: var(--paper, #F2EFE9);
+}
+
+.campaign__media {
+  width: min(88vw, 1200px);
+  height: 76vh;
+  border-radius: 2px;
+}
+
+.campaign__image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky-scene__copy {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max, 1400px);
+  margin-inline: auto;
+  padding: clamp(80px, 16vh, 200px) var(--container-padding, 40px);
+}
+
+.sticky-scene__copy .statement { max-width: 18ch; }
+
+/* ============ 03 · PHILOSOPHY ============ */
+.philosophy {
+  padding: clamp(90px, 14vh, 180px) 0;
+}
+
+.philosophy__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  padding-top: 20px;
+  margin-bottom: clamp(48px, 8vh, 96px);
+}
+
+.philosophy__lead {
+  max-width: 20ch;
+  margin-bottom: clamp(48px, 8vh, 96px);
+}
+
+.philosophy__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(32px, 6vw, 90px);
+  margin-left: auto;
+  max-width: 900px;
+}
+
+.philosophy__body p {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft, #4A4740);
+}
+
+/* ============ 04 · STATS ============ */
+.stats {
+  padding: clamp(60px, 10vh, 120px) 0;
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  border-bottom: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.stat__figure {
+  font-family: var(--font-display, 'Cormorant', Georgia, serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink, #16150F);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 20px;
+}
+
+.stat__figure em { font-style: normal; }
+
+.stat__label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--ink-soft, #4A4740);
+  max-width: 28ch;
+}
+
+/* ============ 05 · EXPANDING IMAGE ============ */
+.expand-scene {
+  padding: clamp(90px, 16vh, 200px) 0;
+  overflow: hidden;
+}
+
+.expand-scene__media .placeholder-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============ 06 · COLLECTION BLOCKS ============ */
+.collection-block {
+  padding: clamp(60px, 10vh, 130px) 0 clamp(70px, 12vh, 150px);
+}
+
+.collection-block--alt { background: var(--paper-deep, #E8E3DA); }
+
+.collection-block__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  padding-top: 20px;
+  margin-bottom: clamp(32px, 6vh, 64px);
+}
+
+.collection-block__media {
+  display: block;
+  width: 100%;
+  height: clamp(340px, 68vh, 720px);
+  margin-bottom: clamp(32px, 6vh, 64px);
+}
+
+.collection-block__media .placeholder-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1.2s var(--ease-out-expo, ease);
+}
+
+.collection-block__media:hover .placeholder-img { transform: scale(1.03); }
+
+.collection-block__info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 80px);
+  align-items: end;
+  margin-bottom: clamp(40px, 7vh, 80px);
+}
+
+.collection-block__aside p {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft, #4A4740);
+  max-width: 44ch;
+  margin-bottom: 28px;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: var(--label, 0.6875rem);
+  letter-spacing: var(--track-wide, 0.18em);
+  text-transform: uppercase;
+  color: var(--ink, #16150F);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  transition: border-color 0.4s ease, gap 0.4s var(--ease-out-expo, ease);
+}
+
+.link-arrow:hover {
+  color: var(--ink, #16150F);
+  border-color: var(--ink, #16150F);
+  gap: 16px;
+}
+
+.collection-block .carousel { margin-top: clamp(32px, 6vh, 64px); }
+
+/* ============ 07 · BIG STATEMENT ============ */
+.big-statement {
+  padding: clamp(110px, 20vh, 260px) 0;
+  text-align: left;
+}
+
+.big-statement .statement { max-width: 16ch; }
+
+.big-statement__sub {
+  margin-top: clamp(32px, 6vh, 64px);
+  margin-left: auto;
+  max-width: 46ch;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft, #4A4740);
+}
+
+/* ============ 09 · EXPERIENCE STACK ============ */
+.experience {
+  padding: clamp(80px, 14vh, 180px) 0 clamp(120px, 20vh, 240px);
+}
+
+.experience__head {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  padding-top: 20px;
+  margin-bottom: clamp(48px, 9vh, 110px);
+}
+
+.experience__head .statement { max-width: 16ch; }
+
+.stack-card {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: clamp(16px, 4vw, 48px);
+  background: var(--paper, #F2EFE9);
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  padding: clamp(32px, 6vh, 64px) 0;
+}
+
+.stack-card__num {
+  font-family: var(--font-sans);
+  font-size: var(--label, 0.6875rem);
+  letter-spacing: 0.1em;
+  color: var(--ink-mute, #8C877C);
+  font-variant-numeric: tabular-nums;
+  padding-top: 8px;
+}
+
+.stack-card__title {
+  font-family: var(--font-display, 'Cormorant', Georgia, serif);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink, #16150F);
+  margin-bottom: 20px;
+}
+
+.stack-card__text {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft, #4A4740);
+  max-width: 48ch;
+  margin-bottom: 28px;
+}
+
+/* ============ 10 · CLOSING CTA ============ */
+.closing {
+  padding: clamp(90px, 16vh, 200px) 0;
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+}
+
+.closing__title { max-width: 18ch; }
+
+.closing__text {
+  margin-top: clamp(28px, 5vh, 56px);
+  max-width: 48ch;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft, #4A4740);
+}
+
+.closing__actions {
+  margin-top: clamp(48px, 9vh, 100px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.closing__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.closing__btn {
+  font-family: var(--font-sans);
+  font-size: var(--label, 0.6875rem);
+  letter-spacing: var(--track-wide, 0.18em);
+  text-transform: uppercase;
+  color: var(--ink, #16150F);
+  border: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  border-radius: 999px;
+  padding: 16px 32px;
+  transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.closing__btn:hover {
+  background: var(--ink, #16150F);
+  border-color: var(--ink, #16150F);
+  color: var(--paper, #F2EFE9);
+}
+
+.closing__newsletter {
+  margin-top: clamp(48px, 9vh, 100px);
+  display: flex;
+  gap: 0;
+  max-width: 480px;
+  border-bottom: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+}
+
+.closing__newsletter .newsletter__input {
+  flex: 1;
+  padding: 16px 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--ink, #16150F);
+  background: none;
+}
+
+.closing__newsletter .newsletter__submit {
+  font-family: var(--font-sans);
+  font-size: var(--label, 0.6875rem);
+  letter-spacing: var(--track-wide, 0.18em);
+  text-transform: uppercase;
+  color: var(--ink, #16150F);
+  padding: 16px 0 16px 24px;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .philosophy__body,
+  .stats__grid,
+  .collection-block__info {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .collection-block__info { align-items: start; }
+  .big-statement__sub { margin-left: 0; }
+}
+
+@media (max-width: 768px) {
+  :root { --container-padding: 20px; }
+
+  .hero { min-height: 540px; }
+
+  .campaign__media {
+    width: 100%;
+    height: 60vh;
+  }
+
+  .stack-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .stack-card__num { padding-top: 0; }
+
+  .closing__buttons { flex-direction: column; }
+  .closing__btn { text-align: center; }
+}
+
+/* ============================================
+   INNER PAGES
+   ============================================ */
+
+/* ---- Editorial page header (collections, contact) ---- */
+.page-head {
+  padding: calc(var(--header-height, 72px) + clamp(60px, 12vh, 140px))
+           0 clamp(40px, 7vh, 80px);
+}
+
+.page-head__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--rule, rgba(22, 21, 15, 0.14));
+  padding-top: 20px;
+  margin-bottom: clamp(28px, 5vh, 56px);
+}
+
+.page-head__title {
+  margin: 0;
+  max-width: 16ch;
+}
+
+.page-head__text {
+  margin-top: clamp(24px, 4vh, 44px);
+  margin-left: auto;
+  max-width: 48ch;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: var(--ink-soft, #4A4740);
+}
+
+/* ---- Discover hero ----
+   The bg is already absolute/inset:0 inside an overflow:hidden hero, so it
+   must not take .parallax-frame. Oversize the inner layer directly so the
+   parallax drift never exposes an edge. */
+.discover-hero__bg > [data-parallax] {
+  position: absolute;
+  inset: -12% 0;
+  width: 100%;
+  height: 124%;
+}
+
+.discover-hero__title.statement {
+  color: #fff;
+  font-style: italic;
+  text-transform: none;
+}
+
+/* ---- Product page: pinned buy panel ----
+   The imagery is the tallest column, so the detail/buy panel is what
+   pins — keeping size, price and Add to Cart in view while the
+   customer scrolls the photography. Falls back gracefully when the
+   panel is the taller of the two (sticky simply never engages). */
+@media (min-width: 901px) {
+  .product-detail {
+    align-items: start;
+  }
+
+  /* Both columns are sticky: whichever is shorter at the current
+     viewport pins while the taller one scrolls past it. Which column
+     that is flips with viewport width, so we don't hard-code it. */
+  .product-thumbnails,
+  .product-main-image,
+  .product-info {
+    position: sticky;
+    top: calc(var(--header-height, 72px) + 24px);
+  }
+
+  .product-info {
+    padding-bottom: clamp(24px, 4vh, 48px);
+  }
+}
+
+/* ---- Collections grid: stagger reveals ---- */
+/* (no will-change: the grid can hold 48+ cards) */
+
+@media (max-width: 900px) {
+  .page-head__text { margin-left: 0; }
+}
+
+/* ============================================
+   HEADER — spread → converge
+   Measured on the reference: at the top the links sit edge to edge; on
+   scroll the RIGHTMOST link stays exactly where it is and the others
+   glide right to meet it, settling ~70px apart. Anchoring the right
+   edge is what makes it read as gathering rather than sliding.
+   `gap` is animatable, so one transition does the whole move; the
+   spread value is measured in JS (see initNav in motion.js) because it
+   depends on the links' rendered widths.
+   ============================================ */
+.header__nav {
+  flex: 1;
+  justify-content: flex-end;   /* right edge is the anchor, in BOTH states */
+  gap: var(--nav-gap, 40px);
+  transition: gap 1.15s var(--ease-in-out-quint, ease);
+}
+
+.header__inner { gap: 24px; }
+
+/* top of the homepage: links spread to fill the bar */
+.header--transparent .header__nav { --nav-gap: var(--nav-gap-spread, 8rem); }
+
+/* scrolled: gathered at the right, matching the reference's ~70px */
+.header--scrolled .header__nav { --nav-gap: 70px; }
+
+/* The hero is paper, not photography — the header must read as ink. */
+.header--transparent { background: transparent; }
+
+.header--transparent .header__logo,
+.header--transparent .header__nav-link,
+.header--transparent .header__icon {
+  color: var(--ink, #16150F);
+}
+
+/* The reference masks its monogram behind an overflow:hidden wrapper and
+   slides it up into view on scroll — that is why its links can span the
+   full bar at the top. Same here: collapsed to zero width at the top so
+   the links own the whole width, then it takes its place on the left. */
+.header__logo {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 1.15s var(--ease-in-out-quint, ease),
+              opacity 0.5s ease,
+              transform 0.9s var(--ease-out-expo, ease);
+}
+
+.header--transparent .header__logo {
+  max-width: 0;
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.header--scrolled .header__logo {
+  max-width: 20rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .header--transparent .header__nav { --nav-gap: var(--nav-gap-spread, 3rem); }
+}
+
+/* ============================================
+   HERO — small screens
+   A single-line wordmark with a large centre ornament cannot hold at
+   phone widths: the two words collide behind the ribbon. So the name
+   stacks and the ribbon moves behind it as a watermark — the letters
+   still overlap the ornament, just in the other direction.
+   ============================================ */
+@media (max-width: 560px) {
+  .hero__wordmark {
+    position: relative;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hero__word {
+    font-size: clamp(2.9rem, 15.5vw, 5.25rem);
+    line-height: 1.02;
+    z-index: 2;
+  }
+
+  .hero__ornament {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    margin: 0;
+    place-items: center;
+    pointer-events: none;
+  }
+
+  .hero__ornament-figure {
+    /* Sized so the two-line wordmark crosses her torso, as it crosses her
+       hip on desktop. Held back enough for the name to stay legible over
+       her, but not so faint that the garment stops reading. */
+    height: min(50vh, 23rem);
+    opacity: 0.5;
+    filter: drop-shadow(0 14px 26px rgba(74, 52, 40, 0.10));
+  }
+
+  .hero__ornament-glow {
+    width: 128%;
+    filter: blur(34px);
+    opacity: 0.7;
+  }
+
+  .hero__studio {
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(12px, 2.4vh, 22px);
+  }
+}

@@ -8,17 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.getElementById('header');
   if (header) {
     const isTransparent = header.classList.contains('header--transparent');
-    window.addEventListener('scroll', () => {
-      if (isTransparent) {
-        if (window.scrollY > 80) {
-          header.classList.add('header--scrolled');
-          header.classList.remove('header--transparent');
-        } else {
-          header.classList.remove('header--scrolled');
-          header.classList.add('header--transparent');
-        }
+    const applyHeaderState = (y) => {
+      if (!isTransparent) return;
+      if (y > 80) {
+        header.classList.add('header--scrolled');
+        header.classList.remove('header--transparent');
+      } else {
+        header.classList.remove('header--scrolled');
+        header.classList.add('header--transparent');
       }
-    });
+    };
+    // Motion owns the scroll loop (smooth scroll); fall back to native.
+    if (window.Motion) {
+      window.Motion.onScroll(({ scroll }) => applyHeaderState(scroll));
+      applyHeaderState(window.scrollY);
+    } else {
+      window.addEventListener('scroll', () => applyHeaderState(window.scrollY));
+    }
   }
 
   // ---- Mobile Menu ----
@@ -255,9 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- Buy Now Button ----
+  // ---- Buy Now Button (demo only; live cart handled by product-page.js) ----
+  const shopifyLive = window.Shopify && window.Shopify.isConfigured && window.Shopify.isConfigured();
   const buyNowBtn = document.getElementById('buyNowBtn');
-  if (buyNowBtn) {
+  if (buyNowBtn && !shopifyLive) {
     buyNowBtn.addEventListener('click', () => {
       buyNowBtn.textContent = 'ADDED TO CART';
       buyNowBtn.style.background = '#4A7C59';
@@ -309,15 +316,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Back to Top ----
   const backToTop = document.getElementById('backToTop');
   if (backToTop) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 600) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
+    const applyBttState = (y) => {
+      backToTop.classList.toggle('visible', y > 600);
+    };
+    if (window.Motion) {
+      window.Motion.onScroll(({ scroll }) => applyBttState(scroll));
+    } else {
+      window.addEventListener('scroll', () => applyBttState(window.scrollY));
+    }
     backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.Motion && window.Motion.scroller) {
+        window.Motion.scroller.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
   }
 

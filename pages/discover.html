@@ -9,8 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/motion.css">
 </head>
 <body>
+
+  <!-- ============ INTRO PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__mark">Shahmeen Husain</span>
+    <span class="preloader__monogram">S.H</span>
+    <span class="preloader__count">000</span>
+  </div>
 
   <!-- HEADER -->
   <header class="header header--scrolled" id="header">
@@ -144,18 +153,18 @@
     <!-- Hero -->
     <section class="discover-hero">
       <div class="discover-hero__bg">
-        <div class="placeholder-img" style="width:100%;height:100%;background:linear-gradient(135deg,#7A6B55 0%,#5C4F40 40%,#3E352C 100%);">
+        <div class="placeholder-img" data-parallax="0.12" style="background:linear-gradient(135deg,#7A6B55 0%,#5C4F40 40%,#3E352C 100%);">
           <div style="color:rgba(255,255,255,0.2);font-size:1rem;">Discover Hero Image — Atelier / Craftsmanship</div>
         </div>
       </div>
       <div class="discover-hero__overlay"></div>
       <div class="discover-hero__content">
-        <h1 class="discover-hero__title">Our Story</h1>
+        <h1 class="discover-hero__title statement" data-reveal="words">Our Story</h1>
       </div>
     </section>
 
     <!-- Design Philosophy -->
-    <section class="discover-section fade-in">
+    <section class="discover-section fade-in" data-reveal="rise">
       <div class="discover-content">
         <h2>Our Design Philosophy</h2>
         <p>At Shahmeen Husain, we create a distinctive aesthetic that draws upon the rich heritage of Indian craftsmanship. Our designs are inspired by the beauty of the natural world, the geometry of architecture, and the poetry of textiles — brought to life through colour, texture, embellishment, and form.</p>
@@ -164,14 +173,14 @@
     </section>
 
     <!-- Full-width Image -->
-    <div class="fade-in" style="width:100%;aspect-ratio:21/9;overflow:hidden;">
+    <div class="fade-in" data-reveal="rise" style="width:100%;aspect-ratio:21/9;overflow:hidden;">
       <div class="placeholder-img" style="width:100%;height:100%;background:linear-gradient(135deg,#B8A794,#9D8B77,#7A6B55);">
         <div style="color:rgba(255,255,255,0.3);">Full-width Editorial Image — Embroidery Detail</div>
       </div>
     </div>
 
     <!-- Craftsmanship -->
-    <section class="discover-section fade-in">
+    <section class="discover-section fade-in" data-reveal="rise">
       <div class="discover-content">
         <h2>The Art of Craftsmanship</h2>
         <p>Every Shahmeen Husain piece begins as a vision and is brought to life through the skilled hands of our artisans. We employ traditional techniques that have been passed down through generations — from intricate zardozi and dabka work to delicate pearl and sequin embroidery.</p>
@@ -180,7 +189,7 @@
     </section>
 
     <!-- Image Grid -->
-    <section class="fade-in" style="padding:0 0 80px;">
+    <section class="fade-in" data-reveal="rise" style="padding:0 0 80px;">
       <div class="discover-gallery">
         <div class="discover-gallery__item">
           <div class="placeholder-img" style="background:linear-gradient(135deg,#D4C5B2,#BCA98F);">
@@ -216,7 +225,7 @@
     </section>
 
     <!-- Values -->
-    <section class="discover-section section--alt fade-in">
+    <section class="discover-section section--alt fade-in" data-reveal="rise">
       <div class="discover-content">
         <h2>Our Values</h2>
         <p>We believe in the power of handmade. In a world of fast fashion, we choose to slow down and honour the time-honoured traditions of Indian textile arts. Each piece in our collection takes weeks to create, ensuring that every detail meets our exacting standards.</p>
@@ -225,7 +234,7 @@
     </section>
 
     <!-- Editorial -->
-    <section class="editorial fade-in">
+    <section class="editorial fade-in" data-reveal="rise">
       <div class="editorial__image">
         <div class="placeholder-img" style="min-height:500px;background:linear-gradient(135deg,#8B7355,#6B5B45,#4A3F35);">
           <div style="color:rgba(255,255,255,0.3);">Editorial Image — Designer / Atelier</div>
@@ -244,7 +253,7 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="newsletter fade-in">
+    <section class="newsletter fade-in" data-reveal="rise">
       <div class="container">
         <h2 class="newsletter__title">From Our Inspirations to Collections, Stay Connected With Our World</h2>
         <p class="newsletter__subtitle">Join the Shahmeen Husain Community</p>
@@ -326,6 +335,8 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
+  <script src="../js/smooth-scroll.js"></script>
+  <script src="../js/motion.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

@@ -9,8 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/motion.css">
 </head>
 <body>
+
+  <!-- ============ INTRO PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__mark">Shahmeen Husain</span>
+    <span class="preloader__monogram">S.H</span>
+    <span class="preloader__count">000</span>
+  </div>
 
   <!-- HEADER -->
   <header class="header header--scrolled" id="header">
@@ -146,9 +155,13 @@
 
   <!-- MAIN CONTENT -->
   <main>
-    <section class="collections-header">
+    <section class="page-head">
       <div class="container">
-        <h1 class="collections-header__title" id="collectionTitle">All Collections</h1>
+        <div class="page-head__meta">
+          <span class="eyebrow" data-reveal="fade">Shop</span>
+          <span class="index-num" data-reveal="fade">Collections</span>
+        </div>
+        <h1 class="page-head__title statement" id="collectionTitle" data-reveal="words">All Collections</h1>
       </div>
     </section>
 
@@ -178,7 +191,7 @@
       <div class="products-grid" id="productsGrid">
 
         <!-- Product 1 -->
-        <div class="product-card fade-in" data-category="lehenga" data-price="48000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="lehenga" data-price="48000">
           <a href="product.html?id=1">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#D4C5B2,#BCA98F);">Lehenga Set</div>
@@ -200,7 +213,7 @@
         </div>
 
         <!-- Product 2 -->
-        <div class="product-card fade-in" data-category="lehenga" data-price="45000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="lehenga" data-price="45000">
           <a href="product.html?id=2">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#C9B8A5,#A8947D);">Lehenga Set</div>
@@ -222,7 +235,7 @@
         </div>
 
         <!-- Product 3 -->
-        <div class="product-card fade-in" data-category="set" data-price="38000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="set" data-price="38000">
           <a href="product.html?id=3">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#DDD0BF,#C4B39E);">Skirt Set</div>
@@ -244,7 +257,7 @@
         </div>
 
         <!-- Product 4 -->
-        <div class="product-card fade-in" data-category="lehenga" data-price="42000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="lehenga" data-price="42000">
           <a href="product.html?id=4">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#E8D9C6,#CEBDA7);">Lehenga Set</div>
@@ -266,7 +279,7 @@
         </div>
 
         <!-- Product 5 -->
-        <div class="product-card fade-in" data-category="saree" data-price="35000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="saree" data-price="35000">
           <a href="product.html?id=5">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#B8A794,#9D8B77);">Saree</div>
@@ -284,7 +297,7 @@
         </div>
 
         <!-- Product 6 -->
-        <div class="product-card fade-in" data-category="gown" data-price="32000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="gown" data-price="32000">
           <a href="product.html?id=6">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#C2B3A0,#A69483);">Gown</div>
@@ -305,7 +318,7 @@
         </div>
 
         <!-- Product 7 -->
-        <div class="product-card fade-in" data-category="lehenga" data-price="28000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="lehenga" data-price="28000">
           <a href="product.html?id=7">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#D2C1AE,#B8A58F);">Lehenga Set</div>
@@ -326,7 +339,7 @@
         </div>
 
         <!-- Product 8 -->
-        <div class="product-card fade-in" data-category="saree" data-price="22000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="saree" data-price="22000">
           <a href="product.html?id=8">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#C8B9A6,#AE9D88);">Saree</div>
@@ -344,7 +357,7 @@
         </div>
 
         <!-- Product 9 -->
-        <div class="product-card fade-in" data-category="jumpsuit" data-price="18000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="jumpsuit" data-price="18000">
           <a href="product.html?id=9">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#DED0BD,#C5B5A0);">Jumpsuit</div>
@@ -364,7 +377,7 @@
         </div>
 
         <!-- Product 10 -->
-        <div class="product-card fade-in" data-category="dress" data-price="24000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="dress" data-price="24000">
           <a href="product.html?id=10">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#E5D7C5,#CCBDA8);">Dress</div>
@@ -385,7 +398,7 @@
         </div>
 
         <!-- Product 11 -->
-        <div class="product-card fade-in" data-category="set" data-price="15000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="set" data-price="15000">
           <a href="product.html?id=11">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#B5A693,#9B8C78);">Set</div>
@@ -406,7 +419,7 @@
         </div>
 
         <!-- Product 12 -->
-        <div class="product-card fade-in" data-category="gown" data-price="30000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="gown" data-price="30000">
           <a href="product.html?id=12">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#C5B6A3,#AB9C87);">Gown</div>
@@ -426,7 +439,7 @@
         </div>
 
         <!-- Product 13 - Menswear -->
-        <div class="product-card fade-in" data-category="menswear" data-price="25000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="menswear" data-price="25000">
           <a href="product.html?id=13">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#A09080,#8A7A6A);">Sherwani</div>
@@ -447,7 +460,7 @@
         </div>
 
         <!-- Product 14 - Menswear -->
-        <div class="product-card fade-in" data-category="menswear" data-price="20000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="menswear" data-price="20000">
           <a href="product.html?id=14">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#948474,#7E6E5E);">Kurta Set</div>
@@ -468,7 +481,7 @@
         </div>
 
         <!-- Product 15 -->
-        <div class="product-card fade-in" data-category="lehenga" data-price="40000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="lehenga" data-price="40000">
           <a href="product.html?id=15">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#DACBB8,#C0AF9A);">Lehenga Set</div>
@@ -490,7 +503,7 @@
         </div>
 
         <!-- Product 16 -->
-        <div class="product-card fade-in" data-category="saree" data-price="26000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="saree" data-price="26000">
           <a href="product.html?id=16">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#BFAE9B,#A59484);">Saree</div>
@@ -508,7 +521,7 @@
         </div>
 
         <!-- Product 17 -->
-        <div class="product-card fade-in" data-category="dress" data-price="19000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="dress" data-price="19000">
           <a href="product.html?id=17">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#D8CABC,#C0AE9E);">Dress</div>
@@ -528,7 +541,7 @@
         </div>
 
         <!-- Product 18 -->
-        <div class="product-card fade-in" data-category="jumpsuit" data-price="21000">
+        <div class="product-card fade-in" data-reveal="rise" data-category="jumpsuit" data-price="21000">
           <a href="product.html?id=18">
             <div class="product-card__image-wrap">
               <div class="placeholder-img" style="background:linear-gradient(135deg,#C3B5A7,#A99B8D);">Jumpsuit</div>
@@ -625,6 +638,12 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
+  <script src="../js/smooth-scroll.js"></script>
+  <script src="../js/motion.js"></script>
+  <script src="../js/shopify-config.js"></script>
+  <script src="../js/shopify.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/collections-page.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

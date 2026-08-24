@@ -9,8 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/motion.css">
 </head>
 <body>
+
+  <!-- ============ INTRO PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__mark">Shahmeen Husain</span>
+    <span class="preloader__monogram">S.H</span>
+    <span class="preloader__count">000</span>
+  </div>
 
   <!-- HEADER -->
   <header class="header header--scrolled" id="header">
@@ -225,7 +234,7 @@
 
         <!-- Product Info -->
         <div class="product-info">
-          <h1 class="product-info__name">Aria Lehenga Set</h1>
+          <h1 class="product-info__name" data-reveal="rise">Aria Lehenga Set</h1>
           <p class="product-info__price">Rs. 48,000</p>
 
           <!-- Size Selector -->
@@ -321,12 +330,12 @@
 
       <!-- You May Also Like -->
       <section class="carousel-section" style="padding-top:40px;">
-        <div class="section__header fade-in">
+        <div class="section__header fade-in" data-reveal="rise">
           <h2 class="section__title">You May Also Like</h2>
         </div>
         <div class="carousel">
           <div class="carousel__track" id="relatedCarousel">
-            <div class="product-card fade-in">
+            <div class="product-card fade-in" data-reveal="rise">
               <a href="product.html?id=2">
                 <div class="product-card__image-wrap">
                   <div class="placeholder-img" style="background:linear-gradient(135deg,#C9B8A5,#A8947D);">Lehenga Set</div>
@@ -338,7 +347,7 @@
                 <p class="product-card__price">Rs. 45,000</p>
               </div>
             </div>
-            <div class="product-card fade-in fade-in-delay-1">
+            <div class="product-card fade-in fade-in-delay-1" data-reveal="rise">
               <a href="product.html?id=3">
                 <div class="product-card__image-wrap">
                   <div class="placeholder-img" style="background:linear-gradient(135deg,#DDD0BF,#C4B39E);">Skirt Set</div>
@@ -350,7 +359,7 @@
                 <p class="product-card__price">Rs. 38,000</p>
               </div>
             </div>
-            <div class="product-card fade-in fade-in-delay-2">
+            <div class="product-card fade-in fade-in-delay-2" data-reveal="rise">
               <a href="product.html?id=5">
                 <div class="product-card__image-wrap">
                   <div class="placeholder-img" style="background:linear-gradient(135deg,#B8A794,#9D8B77);">Saree</div>
@@ -362,7 +371,7 @@
                 <p class="product-card__price">Rs. 35,000</p>
               </div>
             </div>
-            <div class="product-card fade-in fade-in-delay-3">
+            <div class="product-card fade-in fade-in-delay-3" data-reveal="rise">
               <a href="product.html?id=6">
                 <div class="product-card__image-wrap">
                   <div class="placeholder-img" style="background:linear-gradient(135deg,#C2B3A0,#A69483);">Gown</div>
@@ -456,6 +465,12 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
+  <script src="../js/smooth-scroll.js"></script>
+  <script src="../js/motion.js"></script>
+  <script src="../js/shopify-config.js"></script>
+  <script src="../js/shopify.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/product-page.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>

@@ -9,8 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/motion.css">
 </head>
 <body>
+
+  <!-- ============ INTRO PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__mark">Shahmeen Husain</span>
+    <span class="preloader__monogram">S.H</span>
+    <span class="preloader__count">000</span>
+  </div>
 
   <!-- ============ HEADER ============ -->
   <header class="header header--transparent" id="header">
@@ -184,105 +193,161 @@
   <!-- ============ MAIN CONTENT ============ -->
   <main>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="hero">
-      <div class="hero__slide active">
-        <div class="placeholder-img hero__image" style="position:absolute;inset:0;background:linear-gradient(135deg, #8B7355 0%, #6B5B45 30%, #4A3F35 60%, #2C2520 100%);">
-          <div style="text-align:center;color:rgba(255,255,255,0.3);font-size:1rem;">Hero Image — Bridal Collection</div>
+    <!-- ============ 01 · HERO ============ -->
+    <section class="hero" id="hero" data-entrance>
+      <div class="hero__wordmark">
+        <span class="hero__word"><span>Shahmeen</span></span>
+
+        <!-- Centre ornament: a cut-out campaign figure on real alpha,
+             standing between the two halves of the wordmark so the
+             letterforms tuck behind her. -->
+        <span class="hero__ornament" aria-hidden="true">
+          <span class="hero__ornament-glow"></span>
+          <img class="hero__ornament-figure"
+               src="images/hero-model.webp"
+               alt="" width="871" height="1428" decoding="async">
+        </span>
+
+        <span class="hero__word"><span>Husain</span></span>
+      </div>
+
+      <span class="hero__studio"><span>studio</span></span>
+
+      <a href="#campaign" class="hero__scroll" aria-label="Scroll to explore">
+        <span class="hero__scroll-line"></span>
+        <svg class="hero__scroll-head" width="13" height="9" viewBox="0 0 13 9" fill="none"
+             stroke="currentColor" stroke-width="1.1">
+          <polyline points="1 1 6.5 7.5 12 1"></polyline>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ============ 02 · STICKY CAMPAIGN SCENE ============ -->
+    <section class="sticky-scene" id="campaign">
+      <div class="sticky-scene__pin">
+        <div class="campaign__media parallax-frame">
+          <div class="placeholder-img campaign__image" data-parallax="0.12" style="background:linear-gradient(150deg,#6E6046,#4B4133 45%,#2A241C);">
+            <div style="color:rgba(255,255,255,0.22);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;">Campaign Film</div>
+          </div>
         </div>
-        <div class="hero__overlay"></div>
       </div>
-      <div class="hero__slide">
-        <div class="placeholder-img hero__image" style="position:absolute;inset:0;background:linear-gradient(135deg, #7A6B55 0%, #5C4F40 30%, #3E352C 60%, #252018 100%);">
-          <div style="text-align:center;color:rgba(255,255,255,0.3);font-size:1rem;">Hero Image — Festive Collection</div>
-        </div>
-        <div class="hero__overlay"></div>
-      </div>
-      <div class="hero__slide">
-        <div class="placeholder-img hero__image" style="position:absolute;inset:0;background:linear-gradient(135deg, #9B8B70 0%, #7B6B55 30%, #5B4B3A 60%, #3B3025 100%);">
-          <div style="text-align:center;color:rgba(255,255,255,0.3);font-size:1rem;">Hero Image — Wedding Edit</div>
-        </div>
-        <div class="hero__overlay"></div>
-      </div>
-      <div class="hero__content">
-        <h1 class="hero__title">Timeless Elegance</h1>
-        <a href="pages/collections.html" class="hero__cta">SHOP ALL</a>
-      </div>
-      <div class="hero__dots">
-        <button class="hero__dot active" data-slide="0"></button>
-        <button class="hero__dot" data-slide="1"></button>
-        <button class="hero__dot" data-slide="2"></button>
+      <div class="sticky-scene__copy">
+        <p class="statement statement--tight" data-reveal="words">
+          Every thread carries the memory of the hand that placed it
+        </p>
       </div>
     </section>
 
-    <!-- BRAND PHILOSOPHY MARQUEE -->
-    <section class="marquee-section">
-      <div class="marquee" id="marquee">
-        <div class="marquee__content">
-          <span class="marquee__word">For us,</span>
-          <span class="marquee__word marquee__word--bold">CRAFTSMANSHIP</span>
-          <span class="marquee__word">is part of our</span>
-          <span class="marquee__word marquee__word--bold">HERITAGE,</span>
-          <span class="marquee__word marquee__word--bold">IDENTITY</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">EXPRESSION.</span>
-          <span class="marquee__word">Conveying</span>
-          <span class="marquee__word marquee__word--bold">GRACE</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">BEAUTY</span>
-          <span class="marquee__word">through textiles,</span>
-          <span class="marquee__word marquee__word--bold">EMBROIDERY</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">EMBELLISHMENT</span>
-          <span class="marquee__word">on fabric.</span>
-          <span class="marquee__word">With each stitch, our</span>
-          <span class="marquee__word marquee__word--bold">ARTISANS</span>
-          <span class="marquee__word">create</span>
-          <span class="marquee__word marquee__word--bold">DEPTH</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">TEXTURE</span>
-        </div>
-        <div class="marquee__content" aria-hidden="true">
-          <span class="marquee__word">For us,</span>
-          <span class="marquee__word marquee__word--bold">CRAFTSMANSHIP</span>
-          <span class="marquee__word">is part of our</span>
-          <span class="marquee__word marquee__word--bold">HERITAGE,</span>
-          <span class="marquee__word marquee__word--bold">IDENTITY</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">EXPRESSION.</span>
-          <span class="marquee__word">Conveying</span>
-          <span class="marquee__word marquee__word--bold">GRACE</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">BEAUTY</span>
-          <span class="marquee__word">through textiles,</span>
-          <span class="marquee__word marquee__word--bold">EMBROIDERY</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">EMBELLISHMENT</span>
-          <span class="marquee__word">on fabric.</span>
-          <span class="marquee__word">With each stitch, our</span>
-          <span class="marquee__word marquee__word--bold">ARTISANS</span>
-          <span class="marquee__word">create</span>
-          <span class="marquee__word marquee__word--bold">DEPTH</span>
-          <span class="marquee__word">and</span>
-          <span class="marquee__word marquee__word--bold">TEXTURE</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED COLLECTION: BRIDAL -->
-    <section class="carousel-section" id="bridalSection">
+    <!-- ============ 03 · PHILOSOPHY ============ -->
+    <section class="philosophy">
       <div class="container">
-        <div class="section__header fade-in">
-          <h2 class="section__title">Bridal Collection</h2>
-          <p class="section__subtitle">Handcrafted lehengas and ensembles for your most special day, adorned with intricate embroidery and timeless elegance.</p>
-          <a href="pages/collections.html?cat=bridal" class="section__link">Discover This Collection</a>
+        <div class="philosophy__head">
+          <span class="eyebrow" data-reveal="fade">The House</span>
+          <span class="index-num" data-reveal="fade">01</span>
+        </div>
+        <p class="statement philosophy__lead" data-reveal="words">
+          For us, craftsmanship is part of our heritage, identity and expression.
+        </p>
+        <div class="philosophy__body">
+          <p data-reveal="rise" data-reveal-delay="80">
+            We convey grace and beauty through textiles, embroidery and embellishment
+            on fabric. With each stitch, our artisans create depth and texture —
+            transforming cloth into something that outlives the occasion it was made for.
+          </p>
+          <p data-reveal="rise" data-reveal-delay="180">
+            Every piece is drawn, cut and finished in our atelier. Nothing is rushed.
+            The result is a wardrobe of heirlooms, built to be worn, kept and passed on.
+          </p>
         </div>
       </div>
-      <div class="carousel">
+    </section>
+
+    <!-- ============ 04 · CRAFT STATS ============ -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat" data-reveal="rise">
+            <p class="stat__figure"><span data-count="20">0</span><em>+</em></p>
+            <p class="stat__label">Years shaping bridal and occasion couture</p>
+          </div>
+          <div class="stat" data-reveal="rise" data-reveal-delay="120">
+            <p class="stat__figure"><span data-count="50">0</span><em>+</em></p>
+            <p class="stat__label">Artisans practising hand embroidery in our atelier</p>
+          </div>
+          <div class="stat" data-reveal="rise" data-reveal-delay="240">
+            <p class="stat__figure"><span data-count="100">0</span><em>%</em></p>
+            <p class="stat__label">Hand-finished, made to order, never mass produced</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 · EXPANDING CAMPAIGN IMAGE ============ -->
+    <section class="expand-scene">
+      <div class="expand-scene__media" data-expand>
+        <div class="placeholder-img" style="background:linear-gradient(120deg,#8A7A5E,#5F5241 50%,#332C22);">
+          <div style="color:rgba(255,255,255,0.22);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;">The Atelier</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · COLLECTION ONE — BRIDAL ============ -->
+    <section class="collection-block" id="bridalSection">
+      <div class="container">
+        <div class="collection-block__head">
+          <span class="index-num" data-reveal="fade">02</span>
+          <span class="eyebrow" data-reveal="fade">Collection</span>
+        </div>
+      </div>
+
+      <a href="pages/collections.html?cat=bridal" class="collection-block__media parallax-frame editorial__image" data-reveal="mask" data-cursor="Discover">
+        <div class="placeholder-img" data-parallax="0.1" style="background:linear-gradient(135deg,#7A6B55,#5C4F40,#3E352C);">
+          <div style="color:rgba(255,255,255,0.22);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;">Bridal Editorial</div>
+        </div>
+      </a>
+
+      <div class="container">
+        <div class="collection-block__info">
+          <h2 class="collection-block__title statement statement--tight" data-reveal="words">Bridal</h2>
+          <div class="collection-block__aside">
+            <p data-reveal="rise">
+              Handcrafted lehengas and ensembles for the day everything changes —
+              adorned with zardozi, dabka and thread work laid entirely by hand.
+            </p>
+            <a href="pages/collections.html?cat=bridal" class="link-arrow" data-cursor="View">
+              Discover This Collection
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-marquee" aria-hidden="true">
+        <div class="attr-marquee__track">
+          <span class="attr-marquee__item">Hand Embroidery</span>
+          <span class="attr-marquee__item">Zardozi</span>
+          <span class="attr-marquee__item">Raw Silk</span>
+          <span class="attr-marquee__item">Made To Order</span>
+          <span class="attr-marquee__item">Dabka Work</span>
+          <span class="attr-marquee__item">Bespoke Fitting</span>
+        </div>
+        <div class="attr-marquee__track">
+          <span class="attr-marquee__item">Hand Embroidery</span>
+          <span class="attr-marquee__item">Zardozi</span>
+          <span class="attr-marquee__item">Raw Silk</span>
+          <span class="attr-marquee__item">Made To Order</span>
+          <span class="attr-marquee__item">Dabka Work</span>
+          <span class="attr-marquee__item">Bespoke Fitting</span>
+        </div>
+      </div>
+
+      <div class="carousel" data-native-scroll>
         <div class="carousel__track" id="bridalCarousel">
-          <!-- Product 1 -->
-          <div class="product-card fade-in">
-            <a href="pages/product.html?id=1">
+          <div class="product-card" data-reveal="rise">
+            <a href="pages/product.html?id=1" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#D4C5B2,#BCA98F);">Lehenga Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -292,18 +357,12 @@
               <h3 class="product-card__name">Aria Lehenga Set</h3>
               <p class="product-card__price">Rs. 48,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
-                <span class="product-card__size">Customise</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span><span class="product-card__size">Customise</span>
               </div>
             </div>
           </div>
-          <!-- Product 2 -->
-          <div class="product-card fade-in fade-in-delay-1">
-            <a href="pages/product.html?id=2">
+          <div class="product-card" data-reveal="rise" data-reveal-delay="90">
+            <a href="pages/product.html?id=2" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#C9B8A5,#A8947D);">Lehenga Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -313,18 +372,12 @@
               <h3 class="product-card__name">Zara Bridal Lehenga</h3>
               <p class="product-card__price">Rs. 45,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
-                <span class="product-card__size">Customise</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span><span class="product-card__size">Customise</span>
               </div>
             </div>
           </div>
-          <!-- Product 3 -->
-          <div class="product-card fade-in fade-in-delay-2">
-            <a href="pages/product.html?id=3">
+          <div class="product-card" data-reveal="rise" data-reveal-delay="180">
+            <a href="pages/product.html?id=3" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#DDD0BF,#C4B39E);">Lehenga Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -334,18 +387,12 @@
               <h3 class="product-card__name">Meera Skirt Set</h3>
               <p class="product-card__price">Rs. 38,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
-                <span class="product-card__size">Customise</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span><span class="product-card__size">Customise</span>
               </div>
             </div>
           </div>
-          <!-- Product 4 -->
-          <div class="product-card fade-in fade-in-delay-3">
-            <a href="pages/product.html?id=4">
+          <div class="product-card" data-reveal="rise" data-reveal-delay="270">
+            <a href="pages/product.html?id=4" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#E8D9C6,#CEBDA7);">Lehenga Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -355,18 +402,12 @@
               <h3 class="product-card__name">Riya Lehenga Set</h3>
               <p class="product-card__price">Rs. 42,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
-                <span class="product-card__size">Customise</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span><span class="product-card__size">Customise</span>
               </div>
             </div>
           </div>
-          <!-- Product 5 -->
-          <div class="product-card fade-in">
-            <a href="pages/product.html?id=5">
+          <div class="product-card" data-reveal="rise">
+            <a href="pages/product.html?id=5" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#B8A794,#9D8B77);">Saree Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -376,14 +417,12 @@
               <h3 class="product-card__name">Isha Bridal Saree</h3>
               <p class="product-card__price">Rs. 35,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">Free Size</span>
-                <span class="product-card__size">Customise</span>
+                <span class="product-card__size">Free Size</span><span class="product-card__size">Customise</span>
               </div>
             </div>
           </div>
-          <!-- Product 6 -->
-          <div class="product-card fade-in">
-            <a href="pages/product.html?id=6">
+          <div class="product-card" data-reveal="rise">
+            <a href="pages/product.html?id=6" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#C2B3A0,#A69483);">Gown</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -393,59 +432,90 @@
               <h3 class="product-card__name">Anaya Gown</h3>
               <p class="product-card__price">Rs. 32,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span>
               </div>
             </div>
           </div>
         </div>
         <div class="carousel__controls">
           <button class="carousel__btn" data-carousel="bridalCarousel" data-dir="prev" aria-label="Previous">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
           <button class="carousel__btn" data-carousel="bridalCarousel" data-dir="next" aria-label="Next">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 6 15 12 9 18"></polyline>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"></polyline></svg>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- EDITORIAL SECTION -->
-    <section class="editorial fade-in">
-      <div class="editorial__image">
-        <div class="placeholder-img" style="min-height:500px;background:linear-gradient(135deg,#7A6B55,#5C4F40,#3E352C);">
-          <div style="color:rgba(255,255,255,0.3);">Editorial / Runway Image</div>
-        </div>
-      </div>
-      <div class="editorial__content">
-        <h2 class="editorial__title">The Wedding Edit</h2>
-        <p class="editorial__text">
-          Our Wedding Edit brings together a curated selection of ensembles designed for every wedding celebration — from the intimate mehendi to the grand reception. Each piece is handcrafted with meticulous attention to detail, blending traditional artistry with contemporary silhouettes.
+    <!-- ============ 07 · STATEMENT ============ -->
+    <section class="big-statement">
+      <div class="container">
+        <p class="statement" data-reveal="words">A lehenga is more than a garment</p>
+        <p class="big-statement__sub" data-reveal="rise" data-reveal-delay="200">
+          It is the photograph your family keeps on the wall. It is the piece your
+          daughter asks for twenty years from now. We make it accordingly.
         </p>
-        <a href="pages/collections.html?cat=wedding" class="btn">Shop the Edit</a>
       </div>
     </section>
 
-    <!-- FESTIVE COLLECTION CAROUSEL -->
-    <section class="carousel-section section--alt" id="festiveSection">
+    <!-- ============ 08 · COLLECTION TWO — FESTIVE ============ -->
+    <section class="collection-block collection-block--alt" id="festiveSection">
       <div class="container">
-        <div class="section__header fade-in">
-          <h2 class="section__title">Festive Elegance</h2>
-          <p class="section__subtitle">Celebrate every occasion in exquisite handcrafted ensembles. From vibrant lehengas to graceful sarees, each piece tells a story of tradition and artistry.</p>
+        <div class="collection-block__head">
+          <span class="index-num" data-reveal="fade">03</span>
+          <span class="eyebrow" data-reveal="fade">Collection</span>
         </div>
       </div>
-      <div class="carousel">
+
+      <a href="pages/collections.html?cat=festive" class="collection-block__media parallax-frame editorial__image" data-reveal="mask" data-cursor="Discover">
+        <div class="placeholder-img" data-parallax="0.1" style="background:linear-gradient(135deg,#9B8B70,#7B6B55,#5B4B3A);">
+          <div style="color:rgba(255,255,255,0.22);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;">Festive Editorial</div>
+        </div>
+      </a>
+
+      <div class="container">
+        <div class="collection-block__info">
+          <h2 class="collection-block__title statement statement--tight" data-reveal="words">Festive</h2>
+          <div class="collection-block__aside">
+            <p data-reveal="rise">
+              For the mehendi, the sangeet, and every celebration in between.
+              Lighter hands, brighter palettes, the same obsessive finish.
+            </p>
+            <a href="pages/collections.html?cat=festive" class="link-arrow" data-cursor="View">
+              Discover This Collection
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-marquee" aria-hidden="true">
+        <div class="attr-marquee__track">
+          <span class="attr-marquee__item">Mirror Work</span>
+          <span class="attr-marquee__item">Organza</span>
+          <span class="attr-marquee__item">Thread Work</span>
+          <span class="attr-marquee__item">Sarees</span>
+          <span class="attr-marquee__item">Gowns</span>
+          <span class="attr-marquee__item">Contemporary Drape</span>
+        </div>
+        <div class="attr-marquee__track">
+          <span class="attr-marquee__item">Mirror Work</span>
+          <span class="attr-marquee__item">Organza</span>
+          <span class="attr-marquee__item">Thread Work</span>
+          <span class="attr-marquee__item">Sarees</span>
+          <span class="attr-marquee__item">Gowns</span>
+          <span class="attr-marquee__item">Contemporary Drape</span>
+        </div>
+      </div>
+
+      <div class="carousel" data-native-scroll>
         <div class="carousel__track" id="festiveCarousel">
-          <!-- Product 7 -->
-          <div class="product-card fade-in">
-            <a href="pages/product.html?id=7">
+          <div class="product-card" data-reveal="rise">
+            <a href="pages/product.html?id=7" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#D2C1AE,#B8A58F);">Lehenga Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -455,17 +525,12 @@
               <h3 class="product-card__name">Priya Festive Lehenga</h3>
               <p class="product-card__price">Rs. 28,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span>
               </div>
             </div>
           </div>
-          <!-- Product 8 -->
-          <div class="product-card fade-in fade-in-delay-1">
-            <a href="pages/product.html?id=8">
+          <div class="product-card" data-reveal="rise" data-reveal-delay="90">
+            <a href="pages/product.html?id=8" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#C8B9A6,#AE9D88);">Saree</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -475,14 +540,12 @@
               <h3 class="product-card__name">Noor Saree Set</h3>
               <p class="product-card__price">Rs. 22,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">Free Size</span>
-                <span class="product-card__size">Customise</span>
+                <span class="product-card__size">Free Size</span><span class="product-card__size">Customise</span>
               </div>
             </div>
           </div>
-          <!-- Product 9 -->
-          <div class="product-card fade-in fade-in-delay-2">
-            <a href="pages/product.html?id=9">
+          <div class="product-card" data-reveal="rise" data-reveal-delay="180">
+            <a href="pages/product.html?id=9" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#DED0BD,#C5B5A0);">Jumpsuit</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -492,16 +555,12 @@
               <h3 class="product-card__name">Sara Embroidered Jumpsuit</h3>
               <p class="product-card__price">Rs. 18,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span>
               </div>
             </div>
           </div>
-          <!-- Product 10 -->
-          <div class="product-card fade-in fade-in-delay-3">
-            <a href="pages/product.html?id=10">
+          <div class="product-card" data-reveal="rise" data-reveal-delay="270">
+            <a href="pages/product.html?id=10" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#E5D7C5,#CCBDA8);">Dress</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -511,17 +570,12 @@
               <h3 class="product-card__name">Layla Cocktail Dress</h3>
               <p class="product-card__price">Rs. 24,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span>
               </div>
             </div>
           </div>
-          <!-- Product 11 -->
-          <div class="product-card fade-in">
-            <a href="pages/product.html?id=11">
+          <div class="product-card" data-reveal="rise">
+            <a href="pages/product.html?id=11" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#B5A693,#9B8C78);">Set</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -531,17 +585,12 @@
               <h3 class="product-card__name">Diya Pants Set</h3>
               <p class="product-card__price">Rs. 15,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
-                <span class="product-card__size">XL</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span><span class="product-card__size">XL</span>
               </div>
             </div>
           </div>
-          <!-- Product 12 -->
-          <div class="product-card fade-in">
-            <a href="pages/product.html?id=12">
+          <div class="product-card" data-reveal="rise">
+            <a href="pages/product.html?id=12" data-cursor="View">
               <div class="product-card__image-wrap">
                 <div class="placeholder-img" style="background:linear-gradient(135deg,#C5B6A3,#AB9C87);">Gown</div>
                 <div class="product-card__quick-shop">Quick Shop</div>
@@ -551,123 +600,117 @@
               <h3 class="product-card__name">Amara Festive Gown</h3>
               <p class="product-card__price">Rs. 30,000</p>
               <div class="product-card__sizes">
-                <span class="product-card__size">XS</span>
-                <span class="product-card__size">S</span>
-                <span class="product-card__size">M</span>
-                <span class="product-card__size">L</span>
+                <span class="product-card__size">XS</span><span class="product-card__size">S</span><span class="product-card__size">M</span><span class="product-card__size">L</span>
               </div>
             </div>
           </div>
         </div>
         <div class="carousel__controls">
           <button class="carousel__btn" data-carousel="festiveCarousel" data-dir="prev" aria-label="Previous">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
           <button class="carousel__btn" data-carousel="festiveCarousel" data-dir="next" aria-label="Next">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 6 15 12 9 18"></polyline>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"></polyline></svg>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- EDITORIAL SECTION 2 (Reversed) -->
-    <section class="editorial fade-in" style="direction:rtl;">
-      <div class="editorial__image" style="direction:ltr;">
-        <div class="placeholder-img" style="min-height:500px;background:linear-gradient(135deg,#9B8B70,#7B6B55,#5B4B3A);">
-          <div style="color:rgba(255,255,255,0.3);">Editorial / Craftsmanship Image</div>
+    <!-- ============ 09 · THE EXPERIENCE — STACKING CARDS ============ -->
+    <section class="experience">
+      <div class="container">
+        <div class="experience__head">
+          <span class="index-num" data-reveal="fade">04</span>
+          <p class="statement statement--tight" data-reveal="words">Here is how we work with you</p>
+        </div>
+
+        <div class="experience__stack">
+          <article class="stack-card" data-reveal="rise">
+            <span class="stack-card__num">01</span>
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Bridal Appointments</h3>
+              <p class="stack-card__text">
+                A private consultation in the atelier. We take you through fabric,
+                silhouette and embroidery, and build the ensemble around your dates.
+              </p>
+              <a href="https://wa.me/+919XXXXXXXXX" class="link-arrow" target="_blank" rel="noopener" data-cursor="Book">
+                Book Now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="stack-card" data-reveal="rise">
+            <span class="stack-card__num">02</span>
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Customisation</h3>
+              <p class="stack-card__text">
+                Every piece can be remade to your measurements, your palette and your
+                occasion. Made to order is the default here, not an upgrade.
+              </p>
+              <a href="https://wa.me/+919XXXXXXXXX" class="link-arrow" target="_blank" rel="noopener" data-cursor="Enquire">
+                Enquire
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="stack-card" data-reveal="rise">
+            <span class="stack-card__num">03</span>
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Client Assistance</h3>
+              <p class="stack-card__text">
+                Sizing, styling, timelines, alterations. One person stays with your
+                order from the first message to the final fitting.
+              </p>
+              <a href="https://wa.me/+919XXXXXXXXX" class="link-arrow" target="_blank" rel="noopener" data-cursor="Chat">
+                Connect With Us
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="stack-card" data-reveal="rise">
+            <span class="stack-card__num">04</span>
+            <div class="stack-card__body">
+              <h3 class="stack-card__title">Worldwide Delivery</h3>
+              <p class="stack-card__text">
+                Insured shipping to every major market, with customs handled and
+                delivery dates confirmed against your wedding calendar.
+              </p>
+              <a href="pages/contact.html" class="link-arrow" data-cursor="Details">
+                Shipping Details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </article>
         </div>
       </div>
-      <div class="editorial__content" style="direction:ltr;">
-        <h2 class="editorial__title">The Art of Embroidery</h2>
-        <p class="editorial__text">
-          Every Shahmeen Husain creation is a testament to the art of hand embroidery. Our skilled artisans bring age-old techniques to life, creating intricate patterns that transform fabric into wearable art. Each piece carries the warmth of human touch and the precision of generations of craft.
+    </section>
+
+    <!-- ============ 10 · CLOSING CTA ============ -->
+    <section class="closing">
+      <div class="container">
+        <p class="statement closing__title" data-reveal="words">
+          Bring us your occasion, your inspiration, or just a date
         </p>
-        <a href="pages/discover.html" class="btn">Our Story</a>
-      </div>
-    </section>
+        <p class="closing__text" data-reveal="rise" data-reveal-delay="150">
+          Most of our best work starts with a client who has a feeling and a
+          deadline. Our strength is turning that into a fitting, and then a piece.
+        </p>
 
-    <!-- CLIENT SERVICES -->
-    <section class="services fade-in">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">At Your Service</h2>
-        </div>
-        <div class="services__grid">
-          <!-- Client Assistance -->
-          <div class="service-card fade-in">
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4 4 12.954 4 24s8.954 20 20 20z"/>
-                <path d="M16 20c0-4.418 3.582-8 8-8s8 3.582 8 8c0 4-3 5-4 7-1 2-1 3-4 3"/>
-                <circle cx="24" cy="34" r="1.5" fill="currentColor"/>
-              </svg>
-            </div>
-            <h3 class="service-card__title">Client Assistance</h3>
-            <p class="service-card__text">We pride ourselves in providing exceptional customer service. Reach out to find anything about what we do.</p>
-            <a href="https://wa.me/+919XXXXXXXXX" class="service-card__link" target="_blank" rel="noopener">
-              Connect With Us
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-          <!-- Appointments -->
-          <div class="service-card fade-in fade-in-delay-1">
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="6" y="10" width="36" height="32" rx="2"/>
-                <line x1="6" y1="18" x2="42" y2="18"/>
-                <line x1="16" y1="4" x2="16" y2="10"/>
-                <line x1="32" y1="4" x2="32" y2="10"/>
-                <circle cx="24" cy="30" r="4"/>
-              </svg>
-            </div>
-            <h3 class="service-card__title">Appointments</h3>
-            <p class="service-card__text">Request a personalized shopping experience tailored exclusively for you and your preferences.</p>
-            <a href="https://wa.me/+919XXXXXXXXX" class="service-card__link" target="_blank" rel="noopener">
-              Book Now
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-          <!-- Bridal Services -->
-          <div class="service-card fade-in fade-in-delay-2">
-            <div class="service-card__icon">
-              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M24 4l4 8h10l-7 6 3 10-10-6-10 6 3-10-7-6h10z"/>
-                <path d="M12 36c0-6.627 5.373-12 12-12s12 5.373 12 12"/>
-                <line x1="24" y1="44" x2="24" y2="36"/>
-              </svg>
-            </div>
-            <h3 class="service-card__title">Bridal Services</h3>
-            <p class="service-card__text">Say "I do" to our bespoke bridal couture. Request an appointment for your dream wedding ensemble.</p>
-            <a href="https://wa.me/+919XXXXXXXXX" class="service-card__link" target="_blank" rel="noopener">
-              Connect With Us
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
+        <div class="closing__actions" data-reveal="rise" data-reveal-delay="280">
+          <span class="eyebrow">How would you like to reach us?</span>
+          <div class="closing__buttons">
+            <a href="https://wa.me/+919XXXXXXXXX" class="closing__btn" target="_blank" rel="noopener" data-cursor="WhatsApp">WhatsApp</a>
+            <a href="pages/contact.html" class="closing__btn" data-cursor="Write">Email</a>
+            <a href="pages/contact.html" class="closing__btn" data-cursor="Visit">Book A Visit</a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- NEWSLETTER -->
-    <section class="newsletter fade-in">
-      <div class="container">
-        <h2 class="newsletter__title">From Our Inspirations to Collections, Stay Connected With Our World</h2>
-        <p class="newsletter__subtitle">Join the Shahmeen Husain Community</p>
-        <form class="newsletter__form">
+        <form class="newsletter__form closing__newsletter" data-reveal="rise" data-reveal-delay="380">
           <input type="email" class="newsletter__input" placeholder="Your email" required>
-          <button type="submit" class="newsletter__submit">Subscribe</button>
+          <button type="submit" class="newsletter__submit" data-cursor="Join">Subscribe</button>
         </form>
       </div>
     </section>
@@ -771,6 +814,12 @@
     </svg>
   </button>
 
+  <script src="js/smooth-scroll.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/shopify-config.js"></script>
+  <script src="js/shopify.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/home-page.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

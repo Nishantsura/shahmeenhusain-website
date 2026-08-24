@@ -9,8 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/motion.css">
 </head>
 <body>
+
+  <!-- ============ INTRO PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__mark">Shahmeen Husain</span>
+    <span class="preloader__monogram">S.H</span>
+    <span class="preloader__count">000</span>
+  </div>
 
   <!-- HEADER -->
   <header class="header header--scrolled" id="header">
@@ -139,17 +148,21 @@
 
   <!-- MAIN -->
   <main>
-    <section class="contact-hero">
+    <section class="page-head">
       <div class="container">
-        <h1 class="contact-hero__title">Get in Touch</h1>
-        <p class="contact-hero__text">We would love to hear from you. Whether you have a question about our collections, need styling advice, or wish to book a private appointment — we're here to help.</p>
+        <div class="page-head__meta">
+          <span class="eyebrow" data-reveal="fade">Contact</span>
+          <span class="index-num" data-reveal="fade">Atelier</span>
+        </div>
+        <h1 class="page-head__title statement" data-reveal="words">Get in touch</h1>
+        <p class="page-head__text" data-reveal="rise" data-reveal-delay="180">We would love to hear from you. Whether you have a question about our collections, need styling advice, or wish to book a private appointment — we're here to help.</p>
       </div>
     </section>
 
     <div class="container">
       <div class="contact-grid">
         <!-- Contact Form -->
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" data-reveal="rise">
           <div class="contact-form__group">
             <label class="contact-form__label" for="contactName">Name</label>
             <input type="text" class="contact-form__input" id="contactName" placeholder="Your full name" required>
@@ -292,6 +305,8 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
 
+  <script src="../js/smooth-scroll.js"></script>
+  <script src="../js/motion.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>
