@@ -5,13 +5,14 @@ import {
   useCallback,
   useContext,
   useMemo,
+  useEffect,
   useState,
-  useTransition,
   type ReactNode,
 } from "react";
 
 import {
   addToCart as addToCartAction,
+  getCart as getCartAction,
   removeCartLine as removeCartLineAction,
   updateCartLine as updateCartLineAction,
 } from "@/lib/shopify/cart";
@@ -29,17 +30,26 @@ type CartContextValue = {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
-export function CartProvider({
-  initialCart,
-  children,
-}: {
-  initialCart: Cart | null;
-  children: ReactNode;
-}) {
-  const [cart, setCart] = useState<Cart | null>(initialCart);
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [cart, setCart] = useState<Cart | null>(null);
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [, startTransition] = useTransition();
+
+  /* Deliberately hydrated on the client rather than read in the root
+     layout: touching cookies() there would opt every route out of static
+     rendering, which is a poor trade for a cart badge. Pages stay static
+     / ISR and the cart fills in on mount. */
+  useEffect(() => {
+    let cancelled = false;
+    getCartAction()
+      .then((c) => {
+        if (!cancelled) setCart(c);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const add = useCallback(async (variantId: string, quantity = 1) => {
     setBusy(true);

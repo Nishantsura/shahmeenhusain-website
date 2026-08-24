@@ -9,7 +9,6 @@ import { Header } from "@/components/layout/header";
 import { Cursor } from "@/components/motion/cursor";
 import { Preloader } from "@/components/motion/preloader";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
-import { getCart } from "@/lib/shopify/cart";
 
 /* Self-hosted via next/font — the legacy site pulled these from
    fonts.googleapis.com on every page load. */
@@ -50,11 +49,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  // Read on the server so the cart badge and drawer are correct on first
-  // paint rather than popping in after hydration.
-  const cart = await getCart();
-
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -69,7 +64,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
       </head>
       <body className="min-h-full flex flex-col">
-        <CartProvider initialCart={cart}>
+        <CartProvider>
           <SmoothScroll>
             <Preloader />
             <Cursor />
