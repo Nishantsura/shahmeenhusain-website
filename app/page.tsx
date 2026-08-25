@@ -1,13 +1,14 @@
 import { Hero } from "@/components/sections/hero";
 import {
-  BigStatement,
-  CampaignScene,
-  Closing,
-  CollectionBlock,
-  Experience,
-  Philosophy,
+  About,
+  FullBleed,
+  Showreel,
   Stats,
+  Work,
 } from "@/components/sections/editorial";
+import { EnquiryCta } from "@/components/sections/enquiry-cta";
+import { StickyPanels } from "@/components/sections/panels";
+import { ScrollStatement } from "@/components/motion/scroll-statement";
 import { getCollectionOrAll } from "@/lib/shopify";
 
 // Rebuild the home page at most once an hour; product data rarely
@@ -15,62 +16,84 @@ import { getCollectionOrAll } from "@/lib/shopify";
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  // Two visually distinct edits, fetched in parallel on the server.
-  const [bridal, festive] = await Promise.all([
+  // Three visually distinct edits, fetched in parallel on the server.
+  const [bridal, festive, ready] = await Promise.all([
     getCollectionOrAll("lehengas", { first: 12 }),
     getCollectionOrAll("luxury-pret", { first: 12 }),
+    getCollectionOrAll("ready-to-ship", { first: 12 }),
   ]);
 
-  const campaignImage = bridal.products[3]?.featuredImage?.url;
-  const bridalImage = bridal.products[0]?.featuredImage?.url;
-  const festiveImage = festive.products[0]?.featuredImage?.url;
+  const pool = [...bridal.products, ...festive.products, ...ready.products];
+  const plate = (i: number) => pool[i]?.featuredImage?.url;
 
   return (
     <>
       <Hero />
-      <CampaignScene image={campaignImage} />
-      <Philosophy />
-      <Stats />
 
-      <CollectionBlock
-        index="02"
-        title="Bridal"
-        blurb="Handcrafted lehengas and ensembles for the day everything changes — adorned with zardozi, dabka and thread work laid entirely by hand."
-        href="/collections/lehengas"
-        image={bridalImage}
-        products={bridal.products.slice(0, 8)}
-        attributes={[
-          "Hand Embroidery",
-          "Zardozi",
-          "Raw Silk",
-          "Made To Order",
-          "Dabka Work",
-          "Bespoke Fitting",
+      <section id="statement">
+        <ScrollStatement text="Made by hand, for the one day it has to be perfect." />
+      </section>
+
+      <Showreel image={plate(3)} />
+      <About />
+      <Stats image={plate(1)} />
+      <FullBleed image={plate(5)} />
+
+      <Work
+        items={[
+          {
+            title: "Bridal",
+            blurb:
+              "Handcrafted lehengas and ensembles for the day everything changes — zardozi, dabka and thread work laid entirely by hand.",
+            href: "/collections/lehengas",
+            products: bridal.products.slice(0, 8),
+            attributes: [
+              "Hand Embroidery",
+              "Zardozi",
+              "Raw Silk",
+              "Made To Order",
+              "Dabka Work",
+              "Bespoke Fitting",
+            ],
+          },
+          {
+            title: "Festive",
+            blurb:
+              "For the mehendi, the sangeet, and every celebration in between. Lighter hands, brighter palettes, the same obsessive finish.",
+            href: "/collections/luxury-pret",
+            products: festive.products.slice(0, 8),
+            attributes: [
+              "Mirror Work",
+              "Organza",
+              "Thread Work",
+              "Sarees",
+              "Gowns",
+              "Contemporary Drape",
+            ],
+          },
+          {
+            title: "Ready To Ship",
+            blurb:
+              "Finished pieces from the atelier, sized and waiting. Everything here leaves within a week.",
+            href: "/collections/ready-to-ship",
+            products: ready.products.slice(0, 8),
+            attributes: [
+              "In Stock",
+              "Ships In 7 Days",
+              "Luxury Pret",
+              "Co-ords",
+              "Anarkalis",
+              "Worldwide Delivery",
+            ],
+          },
         ]}
       />
 
-      <BigStatement />
-
-      <CollectionBlock
-        index="03"
-        title="Festive"
-        blurb="For the mehendi, the sangeet, and every celebration in between. Lighter hands, brighter palettes, the same obsessive finish."
-        href="/collections/luxury-pret"
-        image={festiveImage}
-        products={festive.products.slice(0, 8)}
-        alt
-        attributes={[
-          "Mirror Work",
-          "Organza",
-          "Thread Work",
-          "Sarees",
-          "Gowns",
-          "Contemporary Drape",
-        ]}
+      <StickyPanels
+        images={[plate(2), plate(7), plate(4), plate(9)].filter(Boolean) as string[]}
       />
 
-      <Experience />
-      <Closing />
+      <EnquiryCta image={plate(6)} />
     </>
   );
 }

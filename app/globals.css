@@ -48,30 +48,55 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 
   /* ---- Shahmeen Husain brand tokens ----
-     Ported from the legacy stylesheets (legacy/css/style.css,
-     legacy/css/motion.css). These drive the editorial layer; shadcn's
-     own tokens above drive the UI primitives. */
-  --color-paper: #F2EFE9;
-  --color-paper-deep: #E8E3DA;
-  --color-ink: #16150F;
-  --color-ink-soft: #4A4740;
-  --color-ink-mute: #8C877C;
-  --color-rule: rgba(22, 21, 15, 0.14);
-  --color-brand: #D8382C;        /* cursor + scroll cue */
+     Earth, not neutral: warm oat ground, espresso ink, burnt terracotta
+     for accents and antique gold for hairlines and ornament. Nothing
+     here is grey — every value carries some red or yellow, which is what
+     keeps the whole site feeling lit by lamplight rather than daylight. */
+  --color-paper: #F1E7D6;        /* warm oat — page ground */
+  --color-paper-deep: #E3D5BE;   /* deeper sand — preloader shell */
+  --color-panel: #2A1D14;        /* espresso — inverted panels + footer */
+  --color-shadow: #241811;       /* darkest ground, for the hero */
+  --color-ink: #2A1D14;
+  --color-ink-soft: #7A6650;     /* warm taupe */
+  --color-ink-mute: #7A6650;
+  --color-rule: rgba(42, 29, 20, 0.16);
+  --color-brand: #9E4A24;        /* burnt terracotta — labels, numbers */
+  --color-gold: #BE9B62;         /* antique gold — hairlines, ornament */
   --color-bronze: #8B7355;
   --color-whatsapp: #25D366;
 
-  --font-display: var(--font-cormorant);
-  --font-serif: var(--font-cormorant-garamond);
-  --font-body: var(--font-montserrat);
+  --font-display: var(--font-marcellus);
+  --font-serif: var(--font-marcellus);
+  --font-body: var(--font-jost);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
 
-  --tracking-wide-label: 0.18em;
+  /* ---- Type scale ----
+     Fluid between roughly 810px and 1600px, then capped: above 1600 the
+     reference stops growing, and unbounded vw type looks absurd on a
+     27" display. Each clamp's middle term is the measured vw slope, the
+     max its measured value at 1600. */
+  --text-mega: clamp(3.5rem, 9vw, 9.05rem);        /* panel headlines */
+  --text-display: clamp(2.75rem, 5.2vw, 5.2rem);   /* section headlines */
+  --text-title: clamp(2rem, 3.2vw, 3.2rem);        /* block titles */
+  --text-lead: clamp(1.125rem, 2vw, 2rem);         /* justified body */
+  --text-body: clamp(1rem, 1.625vw, 1.5rem);       /* stat labels, copy */
+  --text-nav: 1.25rem;
+  --text-tag: 1rem;
+  --text-fine: 0.875rem;
+  --text-micro: 0.8rem;
   --text-label: 0.6875rem;
 
-  --spacing-header: 72px;
+  --tracking-wide-label: 0.18em;
+  /* Marcellus is cut from Roman inscriptional capitals, which were
+     spaced generously on stone. Negative tracking jams the flared serifs
+     into each other and reads cheap, so the display sits slightly open. */
+  --tracking-display: 0.015em;
+  --tracking-grotesk: 0.05em;
+
+  --spacing-header: 60px;
+  --spacing-gutter: 35px;
   --container-max: 1400px;
 }
 
@@ -172,6 +197,18 @@
     line-height: 1.2;
   }
 }
+
+@layer utilities {
+  /* Horizontal project strips are dragged, not scrolled — the bar would
+     sit across the bottom of the imagery. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
 /* ============================================
    Editorial layer
    ============================================ */
@@ -197,22 +234,66 @@
     }
   }
 
-  /* Big uppercase display statement */
+  /* The reference does not use a centred container: every section runs
+     the full width and is inset by one flat gutter. That edge-to-edge
+     measure is why the layout reads as editorial rather than as a page. */
+  .gutter {
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .gutter {
+      padding-inline: var(--spacing-gutter);
+    }
+  }
+
+  /* Display serif — uppercase, very tight, hairline weight. */
+  /* Marcellus ships a single weight; asking for 300 only invites the
+     browser to synthesise a fake light and ruin the carved serifs. */
   .statement {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(2rem, 6.5vw, 6rem);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-size: var(--text-display);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
     text-transform: uppercase;
     color: var(--color-ink);
   }
 
-  .statement-tight {
-    font-size: clamp(1.75rem, 4.5vw, 4rem);
-    line-height: 1.05;
+  .statement-mega {
+    font-size: var(--text-mega);
   }
 
+  .statement-tight {
+    font-size: var(--text-title);
+  }
+
+  /* Grotesk body — also uppercase, justified, slightly open tracking.
+     Setting body copy in caps is the reference's signature move; it only
+     works at this line-height (1.05) and this measure. */
+  /* Jost carries deeper extenders than the grotesk this layout was
+     first built to, and caps set at 1.05 collided. 1.3 also suits the
+     brand better — airier reads more expensive. */
+  .grotesk {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--text-lead);
+    line-height: 1.3;
+    letter-spacing: var(--tracking-grotesk);
+    text-transform: uppercase;
+  }
+
+  .grotesk-sm {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--text-body);
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  /* Small label — form fields, option axes, page eyebrows. Deliberately
+     NOT the big red section label the home page uses; that one is
+     `grotesk-sm text-brand` at the call site. */
   .eyebrow {
     font-family: var(--font-body);
     font-size: var(--text-label);

@@ -60,19 +60,20 @@ export function Preloader() {
   return (
     <div
       aria-hidden
-      className={`fixed inset-0 z-[4000] flex items-center justify-center bg-paper transition-transform duration-[1100ms] ease-[cubic-bezier(0.83,0,0.17,1)] ${
+      /* Sand, matching the parchment hero it lifts off — an espresso
+         shell would flash dark before the fold. */
+      className={`gutter fixed inset-0 z-[4000] flex items-center bg-paper-deep transition-transform duration-[1100ms] ease-[cubic-bezier(0.83,0,0.17,1)] ${
         done ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <span className="absolute bottom-6 left-6 text-label uppercase tracking-[0.18em] text-ink-mute sm:bottom-16 sm:left-20">
-        Shahmeen Husain
-      </span>
-      <span className="font-display text-[clamp(4rem,14vw,11rem)] font-light leading-none tracking-tight text-ink">
+      {/* Monogram sits on the gutter, not in the middle: the counter in
+          the opposite corner is what balances the screen. */}
+      <span className="font-display text-[clamp(4rem,14vw,11rem)] leading-none tracking-[0.015em] text-ink">
         S.H
       </span>
       <span
         ref={countRef}
-        className="absolute bottom-6 right-6 font-body text-base font-light tabular-nums tracking-wider text-ink sm:bottom-16 sm:right-20"
+        className="gutter absolute inset-x-0 top-[clamp(1.5rem,3vw,2.2rem)] text-right font-body text-[2rem] font-light tabular-nums tracking-[0.03em] text-brand"
       >
         000
       </span>

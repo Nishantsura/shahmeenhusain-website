@@ -100,7 +100,10 @@ export function RevealWords({
       {words.map((word, i) => (
         <span
           key={`${word}-${i}`}
-          className="inline-block overflow-hidden align-bottom"
+          /* The mask is only as tall as the line box, so at the tight
+             leading this design uses it shears the descenders clean off.
+             Pad it and pull the padding back out of the layout. */
+          className="inline-block overflow-hidden pb-[0.18em] align-bottom -mb-[0.18em]"
         >
           <motion.span
             data-reveal-word

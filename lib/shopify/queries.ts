@@ -230,3 +230,74 @@ export const CART_LINES_REMOVE = /* GraphQL */ `
     }
   }
 `;
+
+/**
+ * Collections index.
+ *
+ * Deliberately a NEW query rather than an edit to COLLECTIONS_QUERY,
+ * which is proven against the live store. Most collections in this shop
+ * have no `image` set, so it also pulls the first product's shot as a
+ * cover fallback — one request rather than an N+1 per card — and enough
+ * of a product count to drop the empty collections.
+ */
+export const COLLECTIONS_INDEX_QUERY = /* GraphQL */ `
+  query CollectionsIndex($first: Int!) {
+    collections(first: $first) {
+      edges {
+        node {
+          id
+          title
+          handle
+          description
+          image {
+            url
+            altText
+          }
+          products(first: 1) {
+            edges {
+              node {
+                featuredImage {
+                  url
+                  altText
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * Navigation, straight from the store's Shopify admin.
+ *
+ * Shopify nests menu items three deep at most, so the query is written
+ * out rather than recursed. `url` comes back absolute and pointing at
+ * the live myshopify/primary domain — getMenu() rewrites it.
+ */
+export const MENU_QUERY = /* GraphQL */ `
+  query Menu($handle: String!) {
+    menu(handle: $handle) {
+      id
+      handle
+      items {
+        id
+        title
+        url
+        items {
+          id
+          title
+          url
+          items {
+            id
+            title
+            url
+          }
+        }
+      }
+    }
+  }
+`;

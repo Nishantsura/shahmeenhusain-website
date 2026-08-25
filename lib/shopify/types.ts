@@ -87,3 +87,11 @@ export type ProductSortKey =
   | "PRICE"
   | "TITLE"
   | "RELEVANCE";
+
+/** A navigation item from a Shopify menu, with `href` already localised. */
+export type MenuItem = {
+  id: string;
+  title: string;
+  href: string;
+  items: MenuItem[];
+};

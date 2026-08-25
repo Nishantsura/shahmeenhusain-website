@@ -40,7 +40,10 @@ export default async function CollectionPage({
 
   return (
     <>
-      <PageHead eyebrow="Collection" title={title ?? "All Collections"} />
+      {/* A null title means the handle did not resolve and we fell back
+          to the whole catalogue — which is exactly what /collections/all
+          is. "All Collections" would now read as the index page. */}
+      <PageHead eyebrow="Collection" title={title ?? "Shop All"} />
       <CollectionGrid products={products} />
     </>
   );
