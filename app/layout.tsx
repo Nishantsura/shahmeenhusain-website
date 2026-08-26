@@ -67,7 +67,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             emitted during SSR. Without JS they would never play, leaving
             text permanently invisible — so un-hide everything up front. */}
         <noscript>
-          <style>{`[data-reveal-word]{transform:none!important;opacity:1!important}`}</style>
+          <style>{`[data-reveal-word]{transform:none!important;opacity:1!important}
+[data-preloader]{display:none!important}`}</style>
         </noscript>
       </head>
       <body className="min-h-full">
