@@ -36,7 +36,7 @@ export function CollectionIndex({ collections }: { collections: CollectionCard[]
                 <h2 className="statement statement-tight text-[clamp(1.35rem,2vw,1.85rem)] transition-colors group-hover:text-brand">
                   {collection.title}
                 </h2>
-                <span className="shrink-0 font-body text-tag font-light tabular-nums text-brand">
+                <span className="shrink-0 font-body text-fine tabular-nums tracking-caps text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>

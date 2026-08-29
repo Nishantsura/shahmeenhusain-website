@@ -40,13 +40,15 @@ export function Footer() {
                 href={item.href}
                 className={cn(
                   "statement transition-colors hover:text-paper",
-                  pathname === item.href ? "text-white" : "text-ink-soft",
+                  /* On the dark panel the ink tokens are near-invisible;
+                     dimming is a wash of `paper`, not a darker ink. */
+                  pathname === item.href ? "text-paper" : "text-paper/35",
                 )}
               >
                 {item.label}
               </Link>
               {i < NAV.length - 1 ? (
-                <span aria-hidden className="statement text-ink-soft">
+                <span aria-hidden className="statement text-paper/20">
                   /
                 </span>
               ) : null}
@@ -58,17 +60,17 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <Link
               href="/"
-              className="font-body text-fine uppercase tracking-[0.2em] text-paper"
+              className="label text-paper"
             >
               Shahmeen Husain
             </Link>
-            <p className="font-body text-fine font-light text-paper">
+            <p className="font-body text-fine text-paper/60">
               © {new Date().getFullYear()}
             </p>
           </div>
 
           <div className="flex w-full flex-col gap-[clamp(1.25rem,2.5vw,2.2rem)] md:w-[25rem]">
-            <p className="grotesk-sm text-paper">
+            <p className="lead text-body text-paper">
               Flagship Store, Road No. 12
               <br />
               Banjara Hills
@@ -78,7 +80,7 @@ export function Footer() {
 
             <a
               href="mailto:hello@shahmeenhusain.com"
-              className="grotesk-sm text-paper transition-colors hover:text-brand"
+              className="lead text-body text-paper transition-colors hover:text-gold"
             >
               hello@shahmeenhusain.com
             </a>
@@ -90,12 +92,12 @@ export function Footer() {
                     href={item.href}
                     target={item.href.startsWith("http") ? "_blank" : undefined}
                     rel={item.href.startsWith("http") ? "noopener" : undefined}
-                    className="font-body text-tag font-light uppercase text-paper transition-colors hover:text-brand"
+                    className="label text-paper transition-colors hover:text-gold"
                   >
                     {item.label}
                   </a>
                   {i < SOCIAL.length - 1 ? (
-                    <span aria-hidden className="font-body text-tag text-paper/40">
+                    <span aria-hidden className="label text-paper/40">
                       /
                     </span>
                   ) : null}
@@ -103,7 +105,7 @@ export function Footer() {
               ))}
             </div>
 
-            <p className="max-w-[42ch] font-body text-micro font-light uppercase leading-[1.2] text-paper">
+            <p className="label max-w-[42ch] font-light leading-[1.9] text-paper/60">
               Every piece is cut, embroidered and finished by hand in our own
               atelier. We pay our karigars by the hour, not by the piece.
             </p>

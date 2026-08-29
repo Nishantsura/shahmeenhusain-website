@@ -100,7 +100,7 @@ export function Header({ menu }: { menu?: MenuItem[] | null }) {
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
             {count > 0 ? (
-              <span className="absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[10px] font-medium tabular-nums text-paper">
+              <span className="absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 font-body text-[10px] font-medium tabular-nums text-paper">
                 {count}
               </span>
             ) : null}
@@ -169,7 +169,7 @@ function NavItem({
         <Link
           href={item.href}
           aria-expanded={hasChildren ? open : undefined}
-          className="whitespace-nowrap font-body text-[0.75rem] font-light uppercase leading-none tracking-[0.28em] text-current transition-opacity hover:opacity-60"
+          className="label whitespace-nowrap font-light leading-none text-current transition-opacity hover:opacity-60"
         >
           {item.title}
         </Link>
@@ -177,7 +177,7 @@ function NavItem({
         {hasChildren ? (
           <div
             className={cn(
-              "absolute left-1/2 top-full min-w-[15rem] -translate-x-1/2 border border-rule bg-paper-deep py-3 shadow-[0_18px_40px_rgba(42,29,20,0.13)] transition-all duration-300",
+              "absolute left-1/2 top-full min-w-[15rem] -translate-x-1/2 border border-rule bg-paper-deep py-3 shadow-[0_18px_40px_rgba(33,29,25,0.13)] transition-all duration-300",
               open
                 ? "pointer-events-auto translate-y-0 opacity-100"
                 : "pointer-events-none -translate-y-1 opacity-0",
@@ -187,7 +187,7 @@ function NavItem({
               <Link
                 key={child.id}
                 href={child.href}
-                className="block whitespace-nowrap px-6 py-2.5 font-body text-[0.75rem] font-light uppercase tracking-[0.22em] text-ink transition-colors hover:text-brand"
+                className="label block whitespace-nowrap px-6 py-2.5 font-light text-ink transition-colors hover:text-brand"
               >
                 {child.title}
               </Link>

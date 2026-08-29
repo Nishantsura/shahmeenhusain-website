@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost, Marcellus } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 
 import { CartProvider } from "@/components/commerce/cart-provider";
@@ -15,25 +15,30 @@ import { SmoothScroll } from "@/components/motion/smooth-scroll";
 /* Self-hosted via next/font — the legacy site pulled these from
    fonts.googleapis.com on every page load.
 
-   Three faces, each doing one job:
+   Two faces. See the design-system block at the top of globals.css for
+   why these two; the mechanics are here.
 
-   Marcellus — Roman inscriptional capitals with flared, carved serifs.
-   It is the "posh" half: it reads as engraved rather than typeset, which
-   is what separates a couture house from a boutique.
+   Cormorant Garamond is the display face — an old-style Garamond with
+   generous contrast and a heritage-couture feel, set in caps for every
+   headline. It replaces Bodoni Moda, whose cold didone drama read as a
+   Western fashion masthead rather than an atelier. Three weights: 400
+   for the largest cuts where the hairlines carry themselves, 500 for
+   section headlines, 600 where a title needs more body.
 
-   Jost — geometric, quiet, and it tracks out beautifully in all-caps,
-   which is all we ask of it. It stays out of the way of the other two. */
-const marcellus = Marcellus({
-  variable: "--font-marcellus",
+   Manrope carries every other word on the site — a soft grotesque that
+   is quieter and warmer than the geometric Jost it replaces. Weights:
+   300 for large caps copy, 400 for running text, 500/600 for labels. */
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const jost = Jost({
-  variable: "--font-jost",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
@@ -60,7 +65,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${marcellus.variable} ${jost.variable} h-full`}
+      className={`${cormorant.variable} ${manrope.variable} h-full`}
     >
       <head>
         {/* Reveal animations start from a hidden/clipped state, which is

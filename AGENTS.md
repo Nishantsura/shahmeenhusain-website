@@ -23,6 +23,17 @@ Headless Shopify storefront on Next.js (App Router) + Tailwind v4 + shadcn/ui.
   cart rather than an error.
 - `components/motion/` — Lenis smooth scroll, reveals, cursor, preloader,
   parallax, count-up.
+- `lib/size-guide.ts` — the house size chart and the made-to-measure
+  field set. Static on purpose: one atelier, one block, so the chart
+  cannot drift between products. Moves to a Shopify metafield the day
+  the store carries a garment cut on a different block.
+- **Made-to-measure rides on cart line `attributes`**, so the numbers
+  reach checkout, the confirmation mail and the admin — the atelier
+  reads the order, not the PDP. Shopify still needs a variant id for a
+  garment that is not a standard size, so `basePatternSize()` resolves
+  the nearest in-stock chart row to the entered bust and the line shows
+  it as "Base pattern M". Assumes no surcharge; a made-to-measure fee
+  would need a Shopify-side variant or a selling plan.
 
 ## Gotchas that have bitten this codebase
 - **Never set `scroll-behavior: smooth` on `html`.** Lenis writes the

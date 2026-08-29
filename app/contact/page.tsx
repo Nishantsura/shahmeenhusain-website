@@ -30,7 +30,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-10">
               <div>
                 <h2 className="eyebrow mb-4">Visit the atelier</h2>
-                <p className="text-[0.9375rem] leading-[1.85] text-ink-soft">
+                <p className="copy">
                   Shahmeen Husain Flagship Store
                   <br />
                   Road No. 12, Banjara Hills
@@ -43,7 +43,7 @@ export default function ContactPage() {
 
               <div>
                 <h2 className="eyebrow mb-4">Contact</h2>
-                <ul className="flex flex-col gap-2 text-[0.9375rem] text-ink-soft">
+                <ul className="copy flex flex-col gap-2">
                   <li>
                     <a
                       href="https://wa.me/+919XXXXXXXXX"
@@ -67,7 +67,7 @@ export default function ContactPage() {
 
               <div>
                 <h2 className="eyebrow mb-4">Appointments</h2>
-                <p className="max-w-[42ch] text-[0.9375rem] leading-[1.85] text-ink-soft">
+                <p className="copy max-w-[42ch]">
                   Bridal consultations are by appointment so we can give you the
                   room and the time. Tell us your dates and we will build the
                   fitting schedule around them.

@@ -3,12 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { useId } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { Lozenge } from "@/components/ui/lozenge";
 import { ARCH_D, ARCH_H, ARCH_W } from "@/lib/arch";
+import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+/* The SVG frames and the two scrims are painted in the ground colour, and
+   SVG attributes and inline gradients cannot read a Tailwind class. These
+   mirror --color-paper / --color-ink from globals.css and are the only
+   place on the site where a palette value is repeated — keep them in step
+   with the design-system block there. */
+const PAPER = "#FAF8F4";
+const INK = "#211D19";
+const PAPER_A = (a: number) => `rgba(250, 248, 244, ${a})`;
 
 /**
  * Jharokha hero.
@@ -42,12 +52,115 @@ const BAYS: { src: string; frame: Frame }[] = [
   { src: "/hero-arch-right.jpg", frame: { x: -96, y: 4, w: 430, h: 645 } },
 ];
 
+/** Two slides, and how long each holds before the carousel advances. */
+const SLIDE_COUNT = 2;
+const AUTO_MS = 7000;
+/** A horizontal drag past this many px counts as a swipe, not a tap. */
+const SWIPE_PX = 60;
+
+/**
+ * Hero carousel.
+ *
+ * Slide one is the jharokha arcade — the LCP, so it is what paints first
+ * and always the slide the page opens on. Slide two is a full-bleed film
+ * of the atelier with the luxury-pret billing laid over it. The two are
+ * stacked and crossfaded rather than translated, because the arcade runs
+ * its own staged entrance and sliding it in and out would fight that.
+ *
+ * The film's src is not attached until its slide is first reached, so the
+ * 5.7MB clip never touches a first paint that shows the arcade anyway; a
+ * reduced-motion viewer gets the poster and no autoplay, on either the
+ * film or the carousel itself.
+ */
 export function Hero() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  const startX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener?.("change", sync);
+    return () => mq.removeEventListener?.("change", sync);
+  }, []);
+
+  // Hold the reel back when the tab is hidden: no reason to burn the
+  // autoplay timer — or play video — no one is watching.
+  useEffect(() => {
+    const onVis = () => setPaused(document.hidden);
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
+
+  const go = (to: number) =>
+    setIndex(((to % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT);
+
+  // Timer keyed on index, so a manual jump resets the dwell rather than
+  // advancing early off the previous slide's clock.
+  useEffect(() => {
+    if (paused || reduced) return;
+    const id = window.setTimeout(() => go(index + 1), AUTO_MS);
+    return () => window.clearTimeout(id);
+  }, [index, paused, reduced]);
+
+  return (
+    <section
+      className="relative h-svh min-h-[600px] overflow-hidden bg-paper"
+      aria-roledescription="carousel"
+      aria-label="Featured"
+      onPointerDown={(e) => {
+        startX.current = e.clientX;
+      }}
+      onPointerUp={(e) => {
+        const from = startX.current;
+        startX.current = null;
+        if (from == null) return;
+        const dx = e.clientX - from;
+        if (Math.abs(dx) > SWIPE_PX) go(index + (dx < 0 ? 1 : -1));
+      }}
+    >
+      <Slide active={index === 0}>
+        <JharokhaSlide />
+      </Slide>
+      <Slide active={index === 1}>
+        <VideoSlide active={index === 1} />
+      </Slide>
+
+      <Dots index={index} count={SLIDE_COUNT} onDark={index === 1} onGo={go} />
+    </section>
+  );
+}
+
+/**
+ * One crossfaded layer. Both stay mounted; only opacity and hit-testing
+ * move. A plain CSS opacity transition rather than a Motion `animate`
+ * prop: the crossfade fires on a re-render (the active flag flipping),
+ * not on mount, and CSS drives that far more reliably than an animate
+ * target that has to be diffed each render.
+ */
+function Slide({ active, children }: { active: boolean; children: React.ReactNode }) {
+  return (
+    <div
+      aria-hidden={!active}
+      className={cn(
+        "absolute inset-0 transition-opacity duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none",
+        active ? "z-10 opacity-100" : "pointer-events-none z-0 opacity-0",
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+/** Slide 1 — the jharokha arcade. */
+function JharokhaSlide() {
   return (
     /* The bottom padding is clearance for the fixed WhatsApp button,
        which otherwise lands on the right-hand end of the CTA at phone
        widths. Desktop is wide enough that they never meet. */
-    <section className="relative flex h-svh min-h-[600px] flex-col items-center justify-center overflow-hidden bg-paper pb-28 md:pb-0">
+    <div className="flex h-full w-full flex-col items-center justify-center overflow-hidden bg-paper pb-28 md:pb-0">
       <Ground />
 
       <div className="gutter relative z-10 flex w-full flex-col items-center pt-header">
@@ -73,7 +186,156 @@ export function Hero() {
         <Headline />
         <Actions />
       </div>
-    </section>
+    </div>
+  );
+}
+
+/**
+ * Slide 2 — a full-bleed film with the luxury-pret billing.
+ *
+ * The layout is bottom-weighted like the reference: the headline and its
+ * two actions hold the lower-left, a short description sits opposite on
+ * the lower-right, and everything reads paper-on-film over a scrim that
+ * darkens the foot enough to carry the type.
+ */
+function VideoSlide({ active }: { active: boolean }) {
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-umber">
+      <HeroVideo active={active} />
+
+      {/* Foot-heavy wash: bright film at the top, ink at the bottom where
+          the copy sits. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-umber/88 via-umber/30 to-umber/45"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-5 border border-gold/30 md:inset-8"
+      />
+
+      {/* Bottom padding clears the fixed WhatsApp button, which lives in
+          the lower-right where the standfirst also sits. */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end px-[clamp(1.5rem,5vw,5rem)] pb-[clamp(5rem,13vh,7rem)] pt-header">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-12">
+          {/* Left — eyebrow, headline, actions. */}
+          <div className="max-w-[20ch] md:max-w-[48%]">
+            <p className="label text-gold [text-shadow:0_1px_10px_rgba(20,16,13,0.6)]">
+              Luxury Pret
+            </p>
+            <h2 className="statement mt-4 text-pretty text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.0] text-paper [text-shadow:0_2px_24px_rgba(20,16,13,0.5)]">
+              Ready to wear,
+              <br />
+              worked by hand
+            </h2>
+
+            <div className="mt-[clamp(1.5rem,3vh,2.25rem)] flex flex-wrap gap-3">
+              <Link
+                href="/collections/ready-to-ship"
+                className="label border border-paper/50 px-7 py-[0.95rem] text-paper transition-colors duration-300 hover:bg-paper hover:text-umber"
+              >
+                Ready to Ship
+              </Link>
+            </div>
+          </div>
+
+          {/* Right — the standfirst, set opposite the headline. */}
+          <p className="max-w-[36ch] font-body text-body font-light leading-[1.75] text-paper/85 md:text-right [text-shadow:0_1px_12px_rgba(20,16,13,0.6)]">
+            Couture hands on everyday silhouettes — organza, drape and thread
+            work, finished to the standard of the made-to-order floor.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The slide-2 film. The src is attached only once the slide has been
+ * reached, and playback runs only while it is the active slide. A
+ * reduced-motion viewer never gets the src at all — the poster stands in.
+ */
+function HeroVideo({ active }: { active: boolean }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [armed, setArmed] = useState(false);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener?.("change", sync);
+    return () => mq.removeEventListener?.("change", sync);
+  }, []);
+
+  useEffect(() => {
+    const arm = () => setArmed(true);
+    if (active) arm();
+  }, [active]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (active && !reduced) el.play().catch(() => {});
+    else el.pause();
+  }, [active, reduced, armed]);
+
+  return (
+    <video
+      ref={ref}
+      src={armed && !reduced ? "/showreel.mp4" : undefined}
+      poster="/showreel-poster.jpg"
+      muted
+      loop
+      playsInline
+      preload="none"
+      className="h-full w-full object-cover"
+    />
+  );
+}
+
+/** Slide indicators — short rules that fill on the active slide. */
+function Dots({
+  index,
+  count,
+  onDark,
+  onGo,
+}: {
+  index: number;
+  count: number;
+  onDark: boolean;
+  onGo: (to: number) => void;
+}) {
+  return (
+    <div className="absolute bottom-[clamp(1.25rem,3vh,2rem)] left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
+      {Array.from({ length: count }, (_, i) => {
+        const on = i === index;
+        return (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={on}
+            onClick={() => onGo(i)}
+            className="group relative h-4 py-1.5"
+          >
+            <span
+              className={cn(
+                "block h-px transition-all duration-500",
+                on ? "w-12" : "w-9",
+                on
+                  ? onDark
+                    ? "bg-paper"
+                    : "bg-brand"
+                  : onDark
+                    ? "bg-paper/40"
+                    : "bg-ink/25",
+              )}
+            />
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
@@ -81,8 +343,9 @@ export function Hero() {
  * The miniature floral ground.
  *
  * Two veils sit over it. The painting is a dense, mid-contrast field and
- * type laid straight onto it is unreadable, so a flat parchment wash
- * knocks the whole thing back and a soft radial opens a calmer pool
+ * type laid straight onto it is unreadable, so a flat wash of the page
+ * ground knocks it most of the way back — the pattern survives as a
+ * ghost rather than a picture — and a soft radial opens a calmer pool
  * under the centre column.
  */
 function Ground() {
@@ -99,12 +362,12 @@ function Ground() {
            in, it reads as an accidental hairline round the viewport. */
         className="scale-105 object-cover"
       />
-      <div className="absolute inset-0 bg-paper/25" />
+      <div className="absolute inset-0 bg-paper/55" />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(58% 54% at 50% 52%, rgba(241,231,214,0.82) 0%, rgba(241,231,214,0.40) 55%, rgba(241,231,214,0) 84%)",
+            `radial-gradient(58% 54% at 50% 52%, ${PAPER_A(0.86)} 0%, ${PAPER_A(0.44)} 55%, ${PAPER_A(0)} 84%)`,
         }}
       />
     </div>
@@ -124,10 +387,10 @@ function Eyebrow() {
           blossoms in the painting behind it. */}
       <Lozenge className="text-brand" />
       <p
-        className="font-body text-[0.75rem] font-medium uppercase tracking-[0.32em] text-ink"
+        className="label text-ink"
         /* Halo, not a plate: it clears the vines from immediately behind
            each letter while staying invisible as an effect. */
-        style={{ textShadow: "0 0 10px rgba(241,231,214,0.95), 0 0 3px rgba(241,231,214,0.95)" }}
+        style={{ textShadow: `0 0 10px ${PAPER_A(0.95)}, 0 0 3px ${PAPER_A(0.95)}` }}
       >
         Hand embroidered in India
       </p>
@@ -168,13 +431,13 @@ function Jharokha({
           <path d={ARCH_D} />
         </clipPath>
         <linearGradient id={fade} x1="0" y1="0.62" x2="0" y2="1">
-          <stop offset="0%" stopColor="#F1E7D6" stopOpacity="0" />
-          <stop offset="100%" stopColor="#F1E7D6" stopOpacity="0.85" />
+          <stop offset="0%" stopColor={PAPER} stopOpacity="0" />
+          <stop offset="100%" stopColor={PAPER} stopOpacity="0.85" />
         </linearGradient>
         {/* Lifts each bay off the patterned wall — without it the light
             photographs and the cream ground dissolve into each other. */}
         <filter id={lift} x="-20%" y="-12%" width="140%" height="130%">
-          <feDropShadow dx="0" dy="6" stdDeviation="9" floodColor="#2A1D14" floodOpacity="0.26" />
+          <feDropShadow dx="0" dy="6" stdDeviation="9" floodColor={INK} floodOpacity="0.26" />
         </filter>
       </defs>
 
@@ -204,7 +467,7 @@ function Jharokha({
           <text
             className="font-body"
             fill="var(--color-ink)"
-            stroke="#F1E7D6"
+            stroke={PAPER}
             strokeWidth={3}
             paintOrder="stroke"
             strokeLinejoin="round"
@@ -226,7 +489,7 @@ function Headline() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2, delay: 0.85, ease: EASE }}
-      className="mt-[clamp(1rem,2.6vh,2rem)] max-w-[34ch] text-center font-display text-[clamp(1rem,1.8vw,1.5rem)] uppercase leading-[1.6] tracking-[0.2em] text-ink"
+      className="statement mt-[clamp(1rem,2.6vh,2rem)] max-w-[30ch] text-center text-title"
     >
       Heirloom bridal, worked by hand over months
     </motion.h1>
@@ -246,7 +509,7 @@ function Actions() {
           had; a filled block guarantees its own contrast. */}
       <Link
         href="/collections"
-        className="group relative inline-flex items-center gap-3 bg-ink px-10 py-[1.1rem] font-body text-[0.72rem] font-medium uppercase tracking-[0.3em] text-paper shadow-[0_10px_26px_rgba(42,29,20,0.20)] transition-colors duration-500 hover:bg-brand"
+        className="label group relative inline-flex items-center gap-3 bg-ink px-10 py-[1.1rem] text-paper shadow-[0_10px_26px_rgba(33,29,25,0.20)] transition-colors duration-500 hover:bg-brand"
       >
         {/* Hairline held just inside the edge — the same double-line
             device as the arch, at button scale. */}

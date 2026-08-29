@@ -77,7 +77,7 @@ export function MobileMenu({ items }: { items: MenuItem[] }) {
                           key={child.id}
                           href={child.href}
                           onClick={close}
-                          className="py-2.5 font-body text-[0.8rem] font-light uppercase tracking-[0.22em] text-ink-soft transition-colors hover:text-brand"
+                          className="label py-2.5 font-light text-ink-soft transition-colors hover:text-brand"
                         >
                           {child.title}
                         </Link>

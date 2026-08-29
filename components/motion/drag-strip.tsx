@@ -88,7 +88,7 @@ export function DragStrip({
     <div
       ref={ref}
       className={cn(
-        "no-scrollbar gutter flex touch-pan-x select-none gap-3 overflow-x-auto overscroll-x-contain",
+        "no-scrollbar gutter flex touch-pan-x select-none gap-4 overflow-x-auto overscroll-x-contain md:gap-7",
         className,
       )}
     >

@@ -51,7 +51,7 @@ export default async function DiscoverPage() {
           />
           <div className="ml-auto grid max-w-4xl gap-[clamp(32px,6vw,90px)] md:grid-cols-2">
             <Reveal>
-              <p className="text-[0.9375rem] leading-[1.85] text-ink-soft">
+              <p className="copy">
                 We create a distinct aesthetic that draws on the rich heritage of
                 Indian craftsmanship. Our designs are inspired by the beauty of
                 the natural world — the geometry of a garden, the fall of light
@@ -59,7 +59,7 @@ export default async function DiscoverPage() {
               </p>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="text-[0.9375rem] leading-[1.85] text-ink-soft">
+              <p className="copy">
                 Chikankari, zardozi, dabka and thread work are laid entirely by
                 hand. A single lehenga can take months. That time is the point:
                 it is what separates a garment from an heirloom.
@@ -88,7 +88,7 @@ export default async function DiscoverPage() {
                 text="The Shahmeen Husain woman"
               />
               <Reveal delay={0.1}>
-                <p className="max-w-[46ch] text-[0.9375rem] leading-[1.85] text-ink-soft">
+                <p className="copy max-w-[46ch]">
                   She is not dressing for the room. She is dressing for the
                   photograph her family will keep, and for the daughter who will
                   ask for the piece twenty years from now.

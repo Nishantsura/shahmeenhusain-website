@@ -16,14 +16,18 @@ import {
   removeCartLine as removeCartLineAction,
   updateCartLine as updateCartLineAction,
 } from "@/lib/shopify/cart";
-import type { Cart } from "@/lib/shopify/types";
+import type { Cart, LineAttribute } from "@/lib/shopify/types";
 
 type CartContextValue = {
   cart: Cart | null;
   open: boolean;
   busy: boolean;
   setOpen: (open: boolean) => void;
-  add: (variantId: string, quantity?: number) => Promise<void>;
+  add: (
+    variantId: string,
+    quantity?: number,
+    attributes?: LineAttribute[],
+  ) => Promise<void>;
   setQuantity: (lineId: string, quantity: number) => Promise<void>;
   remove: (lineId: string) => Promise<void>;
 };
@@ -51,16 +55,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const add = useCallback(async (variantId: string, quantity = 1) => {
-    setBusy(true);
-    try {
-      const next = await addToCartAction(variantId, quantity);
-      setCart(next);
-      setOpen(true);
-    } finally {
-      setBusy(false);
-    }
-  }, []);
+  const add = useCallback(
+    async (
+      variantId: string,
+      quantity = 1,
+      attributes: LineAttribute[] = [],
+    ) => {
+      setBusy(true);
+      try {
+        const next = await addToCartAction(variantId, quantity, attributes);
+        setCart(next);
+        setOpen(true);
+      } finally {
+        setBusy(false);
+      }
+    },
+    [],
+  );
 
   const setQuantity = useCallback(async (lineId: string, quantity: number) => {
     setBusy(true);

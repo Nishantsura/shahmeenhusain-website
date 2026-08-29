@@ -91,6 +91,9 @@ export function normalizeCart(cart: any): Cart | null {
     lines: nodes<any>(cart.lines).map((l) => ({
       id: l.id,
       quantity: l.quantity,
+      attributes: (l.attributes ?? [])
+        .filter((a: any) => a?.key && a?.value)
+        .map((a: any) => ({ key: a.key, value: a.value })),
       variantId: l.merchandise?.id ?? "",
       variantTitle: l.merchandise?.title ?? "",
       image: image(l.merchandise?.image),

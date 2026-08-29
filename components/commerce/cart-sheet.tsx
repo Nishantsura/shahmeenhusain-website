@@ -69,8 +69,24 @@ export function CartSheet() {
                   {/* Shopify names a sole variant "Default Title" — never show it */}
                   {line.variantTitle && line.variantTitle !== "Default Title" ? (
                     <span className="mt-0.5 text-xs text-ink-mute">
-                      {line.variantTitle}
+                      {line.attributes.some((a) => a.key === "Size")
+                        ? /* A made-to-measure line still sits on a stock
+                             variant; showing that size would contradict the
+                             measurements printed under it. */
+                          `Base pattern ${line.variantTitle}`
+                        : line.variantTitle}
                     </span>
+                  ) : null}
+
+                  {line.attributes.length ? (
+                    <ul className="mt-1.5 space-y-0.5 border-l border-rule pl-2.5">
+                      {line.attributes.map((attr) => (
+                        <li key={attr.key} className="text-[11px] leading-snug text-ink-mute">
+                          <span className="text-ink-soft">{attr.key}</span>{" "}
+                          {attr.value}
+                        </li>
+                      ))}
+                    </ul>
                   ) : null}
 
                   <span className="mt-1 text-sm text-ink-soft">
@@ -105,7 +121,7 @@ export function CartSheet() {
                       type="button"
                       disabled={busy}
                       onClick={() => remove(line.id)}
-                      className="text-label uppercase tracking-[0.18em] text-ink-mute underline-offset-4 transition-colors hover:text-brand hover:underline disabled:opacity-40"
+                      className="eyebrow underline-offset-4 transition-colors hover:text-brand hover:underline disabled:opacity-40"
                     >
                       Remove
                     </button>
@@ -119,7 +135,7 @@ export function CartSheet() {
         {lines.length > 0 ? (
           <div className="border-t border-rule px-6 py-5">
             <div className="mb-1 flex items-baseline justify-between">
-              <span className="text-label uppercase tracking-[0.18em] text-ink-mute">
+              <span className="eyebrow">
                 Subtotal
               </span>
               <span className="font-serif text-xl text-ink">

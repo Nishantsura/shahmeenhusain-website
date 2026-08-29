@@ -11,8 +11,10 @@ type Channel = "email" | "call";
 /**
  * Closing enquiry block.
  *
- * The channel toggle swaps which field is asked for — the reference does
- * the same, and it keeps the form to two inputs instead of four.
+ * The page's last word, so it sits on the house's dark panel ground and
+ * carries the weight of a coda rather than a tacked-on form. The channel
+ * toggle swaps which single field is asked for — the reference does the
+ * same, and it keeps the invitation to two inputs, not four.
  *
  * NOT WIRED UP: like the contact form and the newsletter, this posts
  * nowhere. It needs a real endpoint before launch.
@@ -21,35 +23,60 @@ export function EnquiryCta({ image }: { image?: string }) {
   const [channel, setChannel] = useState<Channel>("email");
 
   return (
-    <section className="gutter flex flex-col gap-[clamp(2.5rem,5vw,4.4rem)] bg-paper pb-[clamp(2rem,3vw,2.2rem)] pt-[clamp(3rem,6vw,4.4rem)] md:pr-[70px]">
-      <Reveal as="h2" kind="fade" className="statement md:w-[78%]">
-        Tell us about the occasion, the idea, or just the fabric you cannot stop thinking about
-      </Reveal>
+    <section className="bg-panel text-paper">
+      <div className="gutter grid items-stretch gap-[clamp(2.5rem,5vw,4.5rem)] py-[clamp(3.5rem,7vw,6rem)] md:grid-cols-[0.9fr_1.1fr]">
+        {/* The photograph, framed by an offset gold hairline. */}
+        {image ? (
+          <Reveal kind="fade" className="relative order-last md:order-first">
+            <div className="absolute inset-0 translate-x-3 translate-y-3 border border-gold/40" aria-hidden />
+            <div className="relative aspect-[4/5] w-full overflow-hidden">
+              <Image
+                src={image}
+                alt=""
+                fill
+                sizes="(max-width: 767px) 100vw, 42vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
+        ) : null}
 
-      <div className="flex flex-col items-end gap-[clamp(2rem,4vw,3.1rem)] md:flex-row">
-        <div className="flex w-full flex-col justify-end gap-[clamp(2rem,4vw,3.1rem)] md:w-1/2">
-          <div className="flex flex-col gap-2.5">
+        {/* The invitation. */}
+        <div className="flex flex-col justify-center gap-[clamp(1.5rem,3vw,2.4rem)]">
+          <div className="flex flex-col gap-4">
+            <Reveal as="p" kind="rise" className="eyebrow text-gold">
+              Enquiries &amp; Appointments
+            </Reveal>
+            <RevealWords
+              as="h2"
+              className="statement statement-tight text-paper"
+              text="Begin a commission"
+            />
             <RevealWords
               as="p"
-              className="grotesk-sm text-ink"
+              className="copy max-w-[46ch] text-paper/70"
               text="Most of our best work starts with a client who cannot quite put their finger on it. Turning that into a drawing, and the drawing into a fitting, is the part we are good at."
             />
-            <Reveal as="p" kind="rise" delay={0.12} className="grotesk-sm mt-6 text-ink">
-              How would you like us to get in touch?
-            </Reveal>
           </div>
 
-          <Reveal kind="rise" delay={0.18} className="w-full">
+          <Reveal kind="rise" delay={0.12} className="w-full">
             <form
-              className="flex w-full flex-col gap-5"
+              className="flex w-full flex-col gap-6"
               onSubmit={(e) => e.preventDefault()}
             >
-              <div className="flex items-center justify-between">
-                <div className="flex gap-5">
+              {/* Channel toggle — a quiet segmented control. */}
+              <div className="flex flex-col gap-2.5">
+                <span className="eyebrow text-paper/45">How should we reach you?</span>
+                <div className="flex w-fit border border-paper/15">
                   {(["email", "call"] as const).map((value) => (
                     <label
                       key={value}
-                      className="flex items-center gap-1.5 font-body text-tag uppercase text-ink"
+                      className={cn(
+                        "label cursor-pointer px-6 py-2.5 transition-colors",
+                        channel === value
+                          ? "bg-gold text-panel"
+                          : "text-paper/60 hover:text-paper",
+                      )}
                     >
                       <input
                         type="radio"
@@ -59,50 +86,33 @@ export function EnquiryCta({ image }: { image?: string }) {
                         onChange={() => setChannel(value)}
                         className="sr-only"
                       />
-                      <span className="flex h-4 w-4 items-center justify-center rounded-full border border-brand">
-                        <span
-                          className={cn(
-                            "h-2 w-2 rounded-full bg-brand transition-opacity",
-                            channel === value ? "opacity-100" : "opacity-0",
-                          )}
-                        />
-                      </span>
                       {value}
                     </label>
                   ))}
                 </div>
-
-                <button
-                  type="submit"
-                  className="rounded-[10px] px-4 py-2 font-body text-tag uppercase text-ink transition-colors hover:text-brand"
-                >
-                  Send
-                </button>
               </div>
 
-              <Field placeholder="Your name" name="name" autoComplete="name" />
-              {channel === "email" ? (
-                <Field placeholder="Your email" name="email" type="email" autoComplete="email" />
-              ) : (
-                <Field placeholder="Your number" name="phone" type="tel" autoComplete="tel" />
-              )}
+              <div className="flex flex-col gap-4">
+                <Field placeholder="Your name" name="name" autoComplete="name" />
+                {channel === "email" ? (
+                  <Field placeholder="Your email" name="email" type="email" autoComplete="email" />
+                ) : (
+                  <Field placeholder="Your number" name="phone" type="tel" autoComplete="tel" />
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="label group flex items-center justify-center gap-3 border border-gold bg-gold px-8 py-4 text-panel transition-colors hover:bg-transparent hover:text-gold"
+              >
+                Send enquiry
+                <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
+                  &rarr;
+                </span>
+              </button>
             </form>
           </Reveal>
         </div>
-
-        {image ? (
-          <Reveal kind="fade" delay={0.1} className="w-full md:w-1/2">
-            <div className="relative aspect-[534/360] w-full overflow-hidden">
-              <Image
-                src={image}
-                alt=""
-                fill
-                sizes="(max-width: 767px) 100vw, 45vw"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
-        ) : null}
       </div>
     </section>
   );
@@ -112,7 +122,7 @@ function Field(props: React.ComponentProps<"input">) {
   return (
     <input
       {...props}
-      className="h-[51px] w-full rounded-[35px] bg-brand/5 px-6 font-body text-tag uppercase text-ink outline-none placeholder:text-ink/40 focus:bg-brand/10"
+      className="label h-[54px] w-full border-b border-paper/20 bg-transparent px-1 text-paper outline-none transition-colors placeholder:text-paper/35 focus:border-gold"
     />
   );
 }

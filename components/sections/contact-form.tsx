@@ -54,7 +54,7 @@ export function ContactForm() {
 
       <Button
         type="submit"
-        className="mt-2 rounded-none bg-ink py-6 text-label uppercase tracking-[0.18em] text-paper hover:bg-ink/90"
+        className="label mt-2 rounded-none bg-ink py-6 text-paper hover:bg-ink/90"
       >
         {sent ? "Message sent" : "Send message"}
       </Button>

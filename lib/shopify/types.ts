@@ -62,9 +62,17 @@ export type Collection = {
   image: ShopImage | null;
 };
 
+/** A per-line note carried through to checkout and the Shopify admin.
+    Made-to-measure orders put every body measurement here. */
+export type LineAttribute = {
+  key: string;
+  value: string;
+};
+
 export type CartLine = {
   id: string;
   quantity: number;
+  attributes: LineAttribute[];
   variantId: string;
   variantTitle: string;
   image: ShopImage | null;

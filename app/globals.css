@@ -7,22 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-manrope);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --font-heading: var(--font-cormorant);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -47,128 +34,133 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* ---- Shahmeen Husain brand tokens ----
-     Earth, not neutral: warm oat ground, espresso ink, burnt terracotta
-     for accents and antique gold for hairlines and ornament. Nothing
-     here is grey — every value carries some red or yellow, which is what
-     keeps the whole site feeling lit by lamplight rather than daylight. */
-  --color-paper: #F1E7D6;        /* warm oat — page ground */
-  --color-paper-deep: #E3D5BE;   /* deeper sand — preloader shell */
-  --color-panel: #2A1D14;        /* espresso — inverted panels + footer */
-  --color-shadow: #241811;       /* darkest ground, for the hero */
-  --color-ink: #2A1D14;
-  --color-ink-soft: #7A6650;     /* warm taupe */
-  --color-ink-mute: #7A6650;
-  --color-rule: rgba(42, 29, 20, 0.16);
-  --color-brand: #9E4A24;        /* burnt terracotta — labels, numbers */
-  --color-gold: #BE9B62;         /* antique gold — hairlines, ornament */
-  --color-bronze: #8B7355;
-  --color-whatsapp: #25D366;
+  /* ================================================================
+     SHAHMEEN HUSAIN — DESIGN SYSTEM
+     ================================================================
 
-  --font-display: var(--font-marcellus);
-  --font-serif: var(--font-marcellus);
-  --font-body: var(--font-jost);
+     Two typefaces, ten colours, seven type sizes, three trackings.
+     Nothing outside this block is a design decision; every component
+     spends these tokens and none of them invents its own value.
+
+     ---- 1. GROUND ----
+     Off-white, not oat. The previous ground (#F1E7D6) carried enough
+     yellow to read as aged paper, which flattened the photography —
+     garments shot on cream seamless had nothing to sit against. The
+     ground is now a near-white with only a whisper of warmth in it, so
+     the clothes supply the colour and the page supplies the light.
+     `paper-deep` is one step down, for bands that need to recede; it is
+     the same hue, never a different one. */
+  --color-paper: #FAF8F4;        /* off-white — page ground */
+  --color-paper-deep: #F1ECE3;   /* one step down — recessed bands, cards */
+
+  /* ---- 2. INK ----
+     Three weights of one warm near-black, and one hairline. Contrast
+     descends: ink for anything that must be read, ink-soft for copy
+     that supports it, ink-mute for metadata nobody reads twice. */
+  --color-ink: #211D19;          /* primary text, and the inverted panel */
+  --color-ink-soft: #5E554C;     /* secondary copy */
+  --color-ink-mute: #928779;     /* captions, meta, quiet labels */
+  --color-rule: rgba(33, 29, 25, 0.13);
+
+  /* ---- 3. DARK GROUNDS ----
+     `panel` is ink used as a surface. `umber` is deeper still and exists
+     only to sit under photography, where a scrim has to win against a
+     bright image without turning grey. */
+  --color-panel: #211D19;
+  --color-umber: #14100D;
+
+  /* ---- 4. ACCENT ----
+     One accent and one metal, both used sparingly. Terracotta is the
+     brand mark — section numbers, prices, hover states. Gold is
+     ornament only: hairlines, rules, the arch. Deepened from #BE9B62,
+     which was tuned against the old oat ground and goes invisible on
+     off-white. */
+  --color-brand: #9E4A24;        /* burnt terracotta */
+  --color-gold: #A8823F;         /* antique gold */
+
+  /* ---- 5. FACES ----
+     Cormorant Garamond — an old-style Garamond with generous contrast
+     and calligraphic warmth. Set in caps for every headline, it reads as
+     heritage couture rather than magazine masthead, which is where the
+     previous didone (Bodoni Moda) landed. Elegant thins hold at the
+     large display sizes it is reserved for; it is never used as body.
+
+     Manrope — a soft grotesque, quieter and warmer than a geometric
+     sans. Garamond serif over a humanist-leaning grotesque is a calm,
+     modern luxury pairing. It carries every word that is not a headline. */
+  --font-display: var(--font-cormorant);
+  --font-serif: var(--font-cormorant);
+  --font-body: var(--font-manrope);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
 
-  /* ---- Type scale ----
-     Fluid between roughly 810px and 1600px, then capped: above 1600 the
-     reference stops growing, and unbounded vw type looks absurd on a
-     27" display. Each clamp's middle term is the measured vw slope, the
-     max its measured value at 1600. */
-  --text-mega: clamp(3.5rem, 9vw, 9.05rem);        /* panel headlines */
-  --text-display: clamp(2.75rem, 5.2vw, 5.2rem);   /* section headlines */
-  --text-title: clamp(2rem, 3.2vw, 3.2rem);        /* block titles */
-  --text-lead: clamp(1.125rem, 2vw, 2rem);         /* justified body */
-  --text-body: clamp(1rem, 1.625vw, 1.5rem);       /* stat labels, copy */
-  --text-nav: 1.25rem;
-  --text-tag: 1rem;
-  --text-fine: 0.875rem;
-  --text-micro: 0.8rem;
-  --text-label: 0.6875rem;
+  /* ---- 6. TYPE SCALE ----
+     Seven sizes. The four display steps are fluid between roughly 810px
+     and 1600px and then capped — above 1600 the layout stops growing,
+     and unbounded vw type looks absurd on a 27" display. The three text
+     steps are fixed: body copy that grows with the viewport is a
+     readability bug, not a feature.
 
-  --tracking-wide-label: 0.18em;
-  /* Marcellus is cut from Roman inscriptional capitals, which were
-     spaced generously on stone. Negative tracking jams the flared serifs
-     into each other and reads cheap, so the display sits slightly open. */
-  --tracking-display: 0.015em;
-  --tracking-grotesk: 0.05em;
+     Everything is smaller than it was. Bodoni's high contrast makes it
+     read larger than Marcellus at the same size, and the old scale was
+     set to compensate for a face that needed the help. */
+  --text-mega: clamp(3.25rem, 8vw, 7.75rem);       /* panel headlines */
+  --text-display: clamp(2.25rem, 4.4vw, 4.5rem);   /* section headlines */
+  --text-title: clamp(1.75rem, 2.8vw, 2.75rem);    /* block titles */
+  --text-lead: clamp(1.0625rem, 1.7vw, 1.625rem);  /* lead copy */
+  --text-body: 0.9375rem;                          /* running copy */
+  --text-fine: 0.8125rem;                          /* captions, prices */
+  --text-label: 0.72rem;                           /* every caps label */
 
+  /* ---- 7. TRACKING ----
+     Three values, and which one you use follows from the size, not from
+     taste. Caps micro-type needs the widest; caps at reading size needs
+     less; the didone display needs almost none, because its own
+     sidebearings are already generous and jamming flared serifs
+     together is what makes a display face read cheap. */
+  --tracking-label: 0.26em;      /* uppercase micro — labels, nav, buttons */
+  --tracking-caps: 0.13em;       /* uppercase at reading size */
+  --tracking-display: 0.02em;    /* the didone headlines */
+
+  /* ---- 8. SPACE ---- */
   --spacing-header: 60px;
   --spacing-gutter: 35px;
   --container-max: 1400px;
+  --space-section: clamp(4.5rem, 9vw, 9rem);  /* vertical rhythm between sections */
 }
 
 
+/* shadcn/ui's own token names, wired to the brand palette above rather
+   than to its stock greyscale. Without this bridge every shadcn
+   primitive (dialog, input, badge, button) renders on pure white with
+   neutral-grey borders and sits visibly outside the design system.
+
+   `--radius: 0` is deliberate. Rounded corners are a software
+   convention; a couture house sets type and rules on square edges, and
+   the arches are the only curve on the page. */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-deep);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-ink);
+  --primary-foreground: var(--color-paper);
+  --secondary: var(--color-paper-deep);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-paper-deep);
+  --muted-foreground: var(--color-ink-mute);
+  --accent: var(--color-paper-deep);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-brand);
+  --border: var(--color-rule);
+  --input: var(--color-rule);
+  --ring: var(--color-brand);
+  --radius: 0px;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
 
 @layer base {
   * {
@@ -184,7 +176,7 @@
   }
   body {
     @apply bg-paper text-ink;
-    font-size: 0.875rem;
+    font-size: var(--text-body);
     line-height: 1.6;
     overflow-x: hidden;
   }
@@ -193,8 +185,12 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif text-ink;
-    font-weight: 400;
-    line-height: 1.2;
+    /* Match `.statement`: a bare heading that never picks up a display
+       class still has to be the Cormorant cut, or the two look like
+       different typefaces. */
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: var(--tracking-display);
   }
 }
 
@@ -247,12 +243,33 @@
     }
   }
 
-  /* Display serif — uppercase, very tight, hairline weight. */
-  /* Marcellus ships a single weight; asking for 300 only invites the
-     browser to synthesise a fake light and ruin the carved serifs. */
+  /* ================================================================
+     TYPE ROLES
+
+     Six classes. Between them they set every word on the site, and a
+     component that needs type reaches for one of these rather than
+     assembling `font-body text-[0.72rem] uppercase tracking-[0.28em]`
+     by hand — which is how the site ended up with six different sizes
+     and five different trackings all meaning "small caps label".
+
+       .statement / -mega / -tight   didone headlines
+       .lead                         large caps copy under a headline
+       .copy                         running sentence-case paragraphs
+       .label                        every uppercase micro label
+       .eyebrow                      .label, but quiet
+
+     Colour is NOT baked in except where the role implies it, so a label
+     on a dark panel is `.label text-paper` and one in terracotta is
+     `.label text-brand`.
+     ================================================================ */
+
+  /* Garamond display. Cormorant carries plenty of thick/thin contrast of
+     its own, so the drama comes from the face, not an optical-size axis.
+     Weight 500 gives the caps enough body to hold at section size without
+     closing the elegant thins; the largest cuts stay light by choice. */
   .statement {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--text-display);
     line-height: 1.1;
     letter-spacing: var(--tracking-display);
@@ -262,44 +279,67 @@
 
   .statement-mega {
     font-size: var(--text-mega);
+    /* Tracking is a ratio of the size, so the em value that opens up a
+       2rem headline blows a 7rem one apart. Close it at the top end. */
+    letter-spacing: 0;
+    line-height: 1;
   }
 
   .statement-tight {
     font-size: var(--text-title);
   }
 
-  /* Grotesk body — also uppercase, justified, slightly open tracking.
-     Setting body copy in caps is the reference's signature move; it only
-     works at this line-height (1.05) and this measure. */
-  /* Jost carries deeper extenders than the grotesk this layout was
-     first built to, and caps set at 1.05 collided. 1.3 also suits the
-     brand better — airier reads more expensive. */
-  .grotesk {
+  /* Lead copy — uppercase, set large, sitting directly under a
+     statement. Caps at reading size is the house voice; it survives only
+     at this tracking and this line-height, and only for two or three
+     lines at a time. */
+  .lead {
     font-family: var(--font-body);
     font-weight: 300;
     font-size: var(--text-lead);
-    line-height: 1.3;
-    letter-spacing: var(--tracking-grotesk);
+    line-height: 1.45;
+    letter-spacing: var(--tracking-caps);
     text-transform: uppercase;
   }
 
-  .grotesk-sm {
+  /* Running copy — the only sentence-case text on the site. Long-form
+     prose (the about page, product descriptions) is unreadable in caps,
+     so it gets ordinary Manrope at a generous leading. */
+  .copy {
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     font-size: var(--text-body);
-    line-height: 1.4;
+    line-height: 1.85;
+    color: var(--color-ink-soft);
+  }
+
+  /* The workhorse. Nav items, buttons, section numbers, prices, badges,
+     form legends, image captions — one geometry for all of them. */
+  .label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--text-label);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-label);
     text-transform: uppercase;
   }
 
-  /* Small label — form fields, option axes, page eyebrows. Deliberately
-     NOT the big red section label the home page uses; that one is
-     `grotesk-sm text-brand` at the call site. */
+  /* .label, held back: lighter and muted, for text that labels
+     something rather than asking to be clicked. */
   .eyebrow {
     font-family: var(--font-body);
+    font-weight: 400;
     font-size: var(--text-label);
-    letter-spacing: var(--tracking-wide-label);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-label);
     text-transform: uppercase;
     color: var(--color-ink-mute);
+  }
+
+  /* Vertical rhythm. One value, so sections stack evenly whatever they
+     contain. */
+  .section-y {
+    padding-block: var(--space-section);
   }
 }
 

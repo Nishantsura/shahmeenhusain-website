@@ -25,17 +25,23 @@ export function ScrollScale({
   radius?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  /* Settles a touch before centre, so the plate is fully open while the
+     reader is looking straight at it rather than resolving on the way
+     past. */
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "center center"],
+    offset: ["start end", "center 0.62"],
   });
 
+  // Opacity leads the scale and finishes early, so the plate fades up
+  // and then eases the last of its growth in — smoother than a bare zoom.
   const scale = useTransform(scrollYProgress, [0, 1], [from, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.55], [0, 1]);
 
   return (
     <div ref={ref} className={cn("relative", className)}>
       <motion.div
-        style={{ scale, borderRadius: radius }}
+        style={{ scale, opacity, borderRadius: radius }}
         className="h-full w-full origin-center overflow-hidden will-change-transform"
       >
         {children}

@@ -29,7 +29,7 @@ export function PageHead({
 
         {text ? (
           <Reveal delay={0.18}>
-            <p className="ml-auto mt-[clamp(24px,4vh,44px)] max-w-[48ch] text-[0.9375rem] leading-[1.85] text-ink-soft max-md:ml-0">
+            <p className="copy ml-auto mt-[clamp(24px,4vh,44px)] max-w-[48ch] max-md:ml-0">
               {text}
             </p>
           </Reveal>

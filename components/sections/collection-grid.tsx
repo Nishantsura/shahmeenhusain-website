@@ -67,7 +67,7 @@ export function CollectionGrid({ products }: { products: Product[] }) {
         </div>
 
         <Select value={sort} onValueChange={(v) => setSort(v as Sort)}>
-          <SelectTrigger className="w-44 rounded-none border-rule text-label uppercase tracking-[0.14em]">
+          <SelectTrigger className="label w-44 rounded-none border-rule">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="rounded-none">
@@ -96,7 +96,7 @@ export function CollectionGrid({ products }: { products: Product[] }) {
             ))}
           </div>
         )}
-        <p className="mt-12 text-label uppercase tracking-[0.18em] text-ink-mute">
+        <p className="eyebrow mt-12">
           {shown.length} {shown.length === 1 ? "piece" : "pieces"}
         </p>
       </div>
@@ -117,7 +117,7 @@ function FilterTab({
     <button
       type="button"
       onClick={onClick}
-      className={`border-b pb-1 text-label uppercase tracking-[0.18em] transition-colors ${
+      className={`label border-b pb-1 transition-colors ${
         active
           ? "border-ink text-ink"
           : "border-transparent text-ink-mute hover:text-ink"

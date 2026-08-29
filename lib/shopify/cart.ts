@@ -11,7 +11,7 @@ import {
   CART_QUERY,
 } from "./queries";
 import { normalizeCart } from "./normalize";
-import type { Cart } from "./types";
+import type { Cart, LineAttribute } from "./types";
 
 /* The legacy site kept the cart id in localStorage. A cookie is
    better: it is available during SSR, so the header badge and drawer
@@ -70,6 +70,11 @@ export async function getCart(): Promise<Cart | null> {
 /**
  * Add a variant to the cart.
  *
+ * `attributes` carry made-to-measure numbers through to checkout and the
+ * admin. Shopify treats two lines with different attributes as separate
+ * lines, which is exactly right here — two of the same dress cut to two
+ * different sets of measurements are not the same line item.
+ *
  * Preserves the legacy expired-cart behaviour: Shopify carts expire, and
  * cartLinesAdd then returns no cart rather than an error. In that case we
  * discard the id, create a fresh cart and retry exactly once.
@@ -77,15 +82,19 @@ export async function getCart(): Promise<Cart | null> {
 export async function addToCart(
   variantId: string,
   quantity = 1,
+  attributes: LineAttribute[] = [],
 ): Promise<Cart> {
   let id = await readCartId();
   if (!id) id = (await createCart()).id;
 
+  const line = {
+    merchandiseId: variantId,
+    quantity,
+    ...(attributes.length ? { attributes } : {}),
+  };
+
   const run = (cartId: string) =>
-    storefrontLive<any>(CART_LINES_ADD, {
-      cartId,
-      lines: [{ merchandiseId: variantId, quantity }],
-    });
+    storefrontLive<any>(CART_LINES_ADD, { cartId, lines: [line] });
 
   let data = await run(id);
 

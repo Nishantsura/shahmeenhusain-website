@@ -32,7 +32,7 @@ export function ProductCard({
             {product.title}
           </div>
         )}
-        <span className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/85 py-3 text-center text-label uppercase tracking-[0.18em] text-paper opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="label absolute inset-x-0 bottom-0 translate-y-full bg-ink/85 py-3 text-center text-paper opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           Quick Shop
         </span>
       </div>
@@ -50,7 +50,7 @@ export function ProductCard({
           ) : null}
         </p>
         {sizeOption ? (
-          <p className="mt-2 flex flex-wrap gap-1.5 text-[10px] uppercase tracking-[0.12em] text-ink-mute">
+          <p className="eyebrow mt-2 flex flex-wrap gap-1.5 text-[0.625rem] tracking-caps">
             {sizeOption.values.map((v) => (
               <span key={v} className="border border-rule px-1.5 py-0.5">
                 {v}
