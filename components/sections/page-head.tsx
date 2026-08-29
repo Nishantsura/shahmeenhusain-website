@@ -12,7 +12,7 @@ export function PageHead({
   text?: string;
 }) {
   return (
-    <section className="pb-[clamp(40px,7vh,80px)] pt-[calc(72px+clamp(60px,12vh,140px))]">
+    <section className="pb-[clamp(40px,7vh,80px)] pt-[calc(var(--spacing-header)+clamp(60px,12vh,140px))]">
       <div className="container-edge">
         <div className="mb-[clamp(28px,5vh,56px)] flex items-baseline justify-between border-t border-rule pt-5">
           <Reveal kind="fade" as="span" className="eyebrow">

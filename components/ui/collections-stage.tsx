@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 
 import { ShowreelVideo } from "@/components/motion/showreel-video";
+import { Arrow } from "@/components/ui/arrow";
 
 /* ============================================================
    CollectionsStage — the wall that folds away
@@ -326,7 +327,7 @@ function OpenFace({
 }) {
   return (
     <>
-      <p className="label text-gold [text-shadow:0_1px_10px_rgba(20,16,13,0.5)]">
+      <p className="label text-gold [text-shadow:0_1px_10px_rgb(var(--color-umber-rgb)_/_0.5)]">
         {panel.eyebrow}
       </p>
 
@@ -334,7 +335,7 @@ function OpenFace({
           corner it will fold into, not toward its own centre. */}
       <motion.h2
         style={headingScale ? { scale: headingScale } : undefined}
-        className="statement statement-tight mt-3 origin-bottom-left text-paper [text-shadow:0_1px_18px_rgba(20,16,13,0.4)]"
+        className="statement statement-tight mt-3 origin-bottom-left text-paper [text-shadow:0_1px_18px_rgb(var(--color-umber-rgb)_/_0.4)]"
       >
         {panel.title}
       </motion.h2>
@@ -395,7 +396,7 @@ function CardFace({ card, index }: { card: StageCard; index: number }) {
           aria-hidden
           className="mb-4 block h-px w-10 origin-left bg-gold/70 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-[2.4]"
         />
-        <p className="font-display text-[clamp(1.6rem,2.1vw,2.5rem)] font-medium uppercase leading-[1.05] tracking-caps text-paper [text-shadow:0_2px_18px_rgba(20,16,13,0.5)]">
+        <p className="font-display text-[clamp(1.6rem,2.1vw,2.5rem)] font-medium uppercase leading-[1.05] tracking-caps text-paper [text-shadow:0_2px_18px_rgb(var(--color-umber-rgb)_/_0.5)]">
           {card.title}
         </p>
         <span className="label mt-3 inline-flex items-center gap-2 text-paper/70 transition-colors duration-300 group-hover:text-gold">
@@ -404,21 +405,6 @@ function CardFace({ card, index }: { card: StageCard; index: number }) {
         </span>
       </div>
     </Link>
-  );
-}
-
-function Arrow({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.2}
-      className={className}
-    >
-      <line x1="2" y1="14" x2="14" y2="2" />
-      <polyline points="5 2 14 2 14 11" />
-    </svg>
   );
 }
 

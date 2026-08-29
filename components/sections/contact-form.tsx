@@ -35,7 +35,7 @@ export function ContactForm() {
             id={field.id}
             type={field.type}
             required={field.required}
-            className="rounded-none border-0 border-b border-rule bg-transparent px-0 shadow-none focus-visible:border-ink focus-visible:ring-0"
+            className="border-0 border-b border-rule bg-transparent px-0 shadow-none focus-visible:border-ink focus-visible:ring-0"
           />
         </div>
       ))}
@@ -54,7 +54,7 @@ export function ContactForm() {
 
       <Button
         type="submit"
-        className="label mt-2 rounded-none bg-ink py-6 text-paper hover:bg-ink/90"
+        className="label mt-2 bg-ink py-6 text-paper hover:bg-ink/90"
       >
         {sent ? "Message sent" : "Send message"}
       </Button>

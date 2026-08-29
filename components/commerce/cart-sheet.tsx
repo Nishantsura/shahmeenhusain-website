@@ -31,7 +31,7 @@ export function CartSheet() {
         {lines.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6">
             <p className="text-sm text-ink-soft">Your cart is empty</p>
-            <Button asChild variant="outline" className="rounded-none">
+            <Button asChild variant="outline">
               <Link href="/collections" onClick={() => setOpen(false)}>
                 Continue Shopping
               </Link>
@@ -146,7 +146,7 @@ export function CartSheet() {
               Shipping &amp; taxes calculated at checkout.
             </p>
             <Button
-              className="w-full rounded-none bg-ink text-paper hover:bg-ink/90"
+              className="w-full bg-ink text-paper hover:bg-ink/90"
               disabled={!cart?.checkoutUrl || redirecting}
               onClick={() => {
                 if (!cart?.checkoutUrl) return;

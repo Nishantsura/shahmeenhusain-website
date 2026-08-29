@@ -42,7 +42,7 @@ export default async function DiscoverPage() {
         </Reveal>
       ) : null}
 
-      <section className="py-[clamp(90px,14vh,180px)]">
+      <section className="py-(--space-page)">
         <div className="container-edge">
           <RevealWords
             as="p"
@@ -70,7 +70,7 @@ export default async function DiscoverPage() {
       </section>
 
       {detail ? (
-        <section className="pb-[clamp(90px,16vh,200px)]">
+        <section className="pb-(--space-page)">
           <div className="container-edge grid items-center gap-12 md:grid-cols-2 md:gap-20">
             <Reveal kind="mask" className="aspect-[3/4] w-full">
               <Image

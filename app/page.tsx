@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { About, Feature, Showreel } from "@/components/sections/editorial";
 import { Collections, type Category } from "@/components/sections/collections";
+import { Testimonials } from "@/components/sections/testimonials";
 import { EnquiryCta } from "@/components/sections/enquiry-cta";
 import { ScrollStatement } from "@/components/motion/scroll-statement";
 import type { StageCard } from "@/components/ui/collections-stage";
@@ -75,7 +76,6 @@ export default async function HomePage() {
     href: "/collections/lehengas",
     image: firstImage(bridal.products),
     products: bridal.products.slice(0, 8),
-    attributes: ["Hand Embroidery", "Zardozi", "Raw Silk", "Made To Order", "Dabka Work", "Bespoke Fitting"],
   };
 
   const luxuryPret: Category = {
@@ -85,7 +85,6 @@ export default async function HomePage() {
     href: "/collections/luxury-pret",
     image: firstImage(luxe.products),
     products: luxe.products.slice(0, 8),
-    attributes: ["Ready To Wear", "Organza", "Contemporary Drape", "Thread Work", "Gowns", "Everyday Luxe"],
   };
 
   const chikankari: Category = {
@@ -95,7 +94,6 @@ export default async function HomePage() {
     href: "/collections/chikankari",
     image: firstImage(chikan.products),
     products: chikan.products.slice(0, 8),
-    attributes: ["Hand Chikankari", "Shadow Work", "Jaali", "Mull Cotton", "Organza", "Lucknow"],
   };
 
   const readyToShip: Category = {
@@ -105,7 +103,6 @@ export default async function HomePage() {
     href: "/collections/ready-to-ship",
     image: firstImage(ready.products),
     products: ready.products.slice(0, 8),
-    attributes: ["In Stock", "Sized", "Leaves Within A Week", "Atelier Finished"],
   };
 
   // Cover art, looked up by handle against the live store.
@@ -154,8 +151,11 @@ export default async function HomePage() {
     <>
       <Hero />
 
-      <section id="statement" className="bg-paper pb-[clamp(1rem,2vw,2rem)] pt-[clamp(4rem,9vw,7rem)]">
-        <ScrollStatement text="Made by hand, for the one day it has to be perfect." />
+      <section id="statement" className="bg-paper pb-(--space-section-sm) pt-(--space-section)">
+        <ScrollStatement
+          className="max-w-[34ch]"
+          text="Made by hand, for the one day it has to be perfect."
+        />
       </section>
 
       {/* Ready to Ship is promoted out of the stack at the foot of the
@@ -180,6 +180,8 @@ export default async function HomePage() {
         cards={galleryCards}
         work={[hero, luxuryPret, chikankari, readyToShip]}
       />
+
+      <Testimonials />
 
       {/* The same film-wall stage, turned on the Shop menu: its own
           heading and a rail of the garment categories beneath it — the

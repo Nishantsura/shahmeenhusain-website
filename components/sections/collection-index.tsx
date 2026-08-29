@@ -15,7 +15,7 @@ export function CollectionIndex({ collections }: { collections: CollectionCard[]
   if (!collections.length) return null;
 
   return (
-    <section className="gutter pb-[clamp(4rem,9vw,7.5rem)]">
+    <section className="gutter pb-(--space-section)">
       <div className="grid gap-x-[clamp(1rem,2.2vw,2.2rem)] gap-y-[clamp(2.5rem,5vw,4.5rem)] sm:grid-cols-2 lg:grid-cols-3">
         {collections.map((collection, i) => (
           <Reveal key={collection.id} kind="rise" delay={(i % 3) * 0.06}>

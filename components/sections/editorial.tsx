@@ -6,6 +6,7 @@ import { Parallax } from "@/components/motion/parallax";
 import { Reveal, RevealWords } from "@/components/motion/reveal";
 import { ScrollScale } from "@/components/motion/scroll-scale";
 import { ShowreelVideo } from "@/components/motion/showreel-video";
+import { Arrow } from "@/components/ui/arrow";
 import { Lozenge } from "@/components/ui/lozenge";
 import { formatMoney } from "@/lib/money";
 import type { Product } from "@/lib/shopify/types";
@@ -32,10 +33,10 @@ export function Showreel() {
         />
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 md:p-9">
-          <p className="label text-paper [text-shadow:0_1px_10px_rgba(20,16,13,0.55)]">
+          <p className="label text-paper [text-shadow:0_1px_10px_rgb(var(--color-umber-rgb)_/_0.55)]">
             Zardozi, in progress
           </p>
-          <p className="hidden label text-gold [text-shadow:0_1px_10px_rgba(20,16,13,0.55)] sm:block">
+          <p className="hidden label text-gold [text-shadow:0_1px_10px_rgb(var(--color-umber-rgb)_/_0.55)] sm:block">
             The atelier — Lucknow
           </p>
         </div>
@@ -50,7 +51,7 @@ export function Showreel() {
 
 export function About() {
   return (
-    <section className="gutter section-y flex flex-col justify-center bg-paper">
+    <section className="gutter flex flex-col justify-center bg-paper pt-(--space-section-sm) pb-(--space-section)">
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-10">
         <Reveal as="p" kind="fade" className="label shrink-0 text-brand">
           About
@@ -121,7 +122,7 @@ export function Feature({
   if (!products.length) return null;
 
   return (
-    <section className="flex flex-col items-center bg-paper pb-[clamp(3rem,6vw,5rem)] pt-[clamp(3rem,7vw,5.5rem)]">
+    <section className="flex flex-col items-center bg-paper pb-(--space-section-sm) pt-(--space-section-sm)">
       <Reveal kind="fade" className="gutter flex flex-col items-center text-center">
         <Lozenge className="text-brand" />
         <h2 className="statement statement-tight mt-[clamp(0.75rem,1.8vh,1.25rem)]">{title}</h2>
@@ -151,13 +152,12 @@ export type WorkItem = {
   blurb: string;
   href: string;
   products: Product[];
-  attributes: string[];
 };
 
 export function Work({ items }: { items: WorkItem[] }) {
   return (
-    <section className="flex flex-col items-center bg-paper pb-16 pt-[clamp(4rem,9vw,7.5rem)]">
-      <div className="flex w-full flex-col gap-[clamp(4.5rem,9vw,7.5rem)]">
+    <section className="flex flex-col items-center bg-paper pb-(--space-section-sm) pt-(--space-section-sm)">
+      <div className="flex w-full flex-col gap-[clamp(2.75rem,5vw,4.5rem)]">
         {items.map((item) => (
           <WorkBlock key={item.title} {...item} />
         ))}
@@ -166,7 +166,7 @@ export function Work({ items }: { items: WorkItem[] }) {
   );
 }
 
-function WorkBlock({ title, href, products, attributes }: WorkItem) {
+function WorkBlock({ title, href, products }: WorkItem) {
   return (
     <article className="flex flex-col gap-[clamp(1.25rem,2.7vw,2.2rem)]">
       <header className="gutter flex flex-col gap-4">
@@ -182,19 +182,6 @@ function WorkBlock({ title, href, products, attributes }: WorkItem) {
 
         <EndCard href={href} label="See collection" />
       </DragStrip>
-
-      <Reveal kind="rise" className="gutter flex flex-wrap items-center gap-x-1.5 gap-y-1">
-        {attributes.map((attr, i) => (
-          <span key={attr} className="flex items-center gap-1.5">
-            <span className="label leading-5 text-brand">
-              {attr}
-            </span>
-            {i < attributes.length - 1 ? (
-              <span className="label leading-5 text-brand">/</span>
-            ) : null}
-          </span>
-        ))}
-      </Reveal>
     </article>
   );
 }
@@ -241,12 +228,15 @@ function StripCard({ product }: { product: Product }) {
       </div>
 
       {/* Two lines reserved whatever the name, so a strip of long and
-          short titles still lines up along the bottom. */}
-      <div className="mt-5 border-t border-rule pt-4">
-        <p className="label line-clamp-2 min-h-[2.6em] leading-[1.35] tracking-caps text-ink transition-colors duration-300 group-hover:text-brand">
+          short titles still lines up along the bottom. The reserve sits on
+          this wrapper rather than the title itself, with the pair bottom-
+          anchored inside it — a one-line name leaves its slack above the
+          title instead of stranding the price below it. */}
+      <div className="mt-5 flex min-h-[4.7rem] flex-col justify-end border-t border-rule pt-4">
+        <p className="label line-clamp-2 leading-[1.35] tracking-caps text-ink transition-colors duration-300 group-hover:text-brand">
           {product.title}
         </p>
-        <p className="mt-2 font-body text-fine tabular-nums tracking-caps text-brand">
+        <p className="mt-1.5 font-body text-fine tabular-nums tracking-caps text-brand">
           {formatMoney(product.price)}
         </p>
       </div>
@@ -276,14 +266,5 @@ function EndCard({ href, label }: { href: string; label: string }) {
       <Arrow className="relative h-5 w-5 transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:-translate-y-1" />
       <span className="label relative">{label}</span>
     </Link>
-  );
-}
-
-function Arrow({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.2} className={className}>
-      <line x1="2" y1="14" x2="14" y2="2" />
-      <polyline points="5 2 14 2 14 11" />
-    </svg>
   );
 }

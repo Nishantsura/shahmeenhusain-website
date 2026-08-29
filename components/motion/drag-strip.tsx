@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { forwardRef, useEffect, useRef, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -17,14 +17,15 @@ import { cn } from "@/lib/utils";
  *  - Native touch scrolling is left alone (`touch-action: pan-x`); it is
  *    already better than anything we would write, and Lenis does not
  *    touch the horizontal axis.
+ *
+ * Forwards its scroll element, so a caller that needs arrow-button
+ * navigation (see Testimonials) can drive `scrollBy` on it directly
+ * instead of duplicating the drag wiring.
  */
-export function DragStrip({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export const DragStrip = forwardRef<
+  HTMLDivElement,
+  { children: ReactNode; className?: string }
+>(function DragStrip({ children, className }, forwardedRef) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -86,7 +87,11 @@ export function DragStrip({
 
   return (
     <div
-      ref={ref}
+      ref={(node) => {
+        ref.current = node;
+        if (typeof forwardedRef === "function") forwardedRef(node);
+        else if (forwardedRef) forwardedRef.current = node;
+      }}
       className={cn(
         "no-scrollbar gutter flex touch-pan-x select-none gap-4 overflow-x-auto overscroll-x-contain md:gap-7",
         className,
@@ -95,4 +100,4 @@ export function DragStrip({
       {children}
     </div>
   );
-}
+});

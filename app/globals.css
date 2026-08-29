@@ -68,6 +68,13 @@
      bright image without turning grey. */
   --color-panel: #211D19;
   --color-umber: #14100D;
+  /* Same colour as `umber`, as an R G B triplet — text-shadows and
+     scrims need to dial the opacity per use (a caption's shadow is
+     stronger than a headline's), and `rgb()`/opacity utilities can't
+     do that against a hex token. Every umber shadow on the site reads
+     `rgb(var(--color-umber-rgb) / <alpha>)` off this one value instead
+     of retyping the colour as a literal. */
+  --color-umber-rgb: 20 16 13;
 
   /* ---- 4. ACCENT ----
      One accent and one metal, both used sparingly. Terracotta is the
@@ -123,11 +130,22 @@
   --tracking-caps: 0.13em;       /* uppercase at reading size */
   --tracking-display: 0.02em;    /* the didone headlines */
 
-  /* ---- 8. SPACE ---- */
+  /* ---- 8. SPACE ----
+     Two rhythm tokens, not one. `-section` is a real boundary: the last
+     thing before a background/context change (leaving the hero, into a
+     dark panel, before the footer). `-section-sm` is for a section that
+     sits directly against another content section with nothing between
+     them — used on the touching edge only, so two adjacent sections each
+     contributing `-sm` add up to one `-section` gap rather than doubling
+     it. `-page` is the equivalent for the centred interior pages
+     (contact, discover), which run a different, wider-set clamp because
+     the container is narrower and centred rather than edge-to-edge. */
   --spacing-header: 60px;
   --spacing-gutter: 35px;
   --container-max: 1400px;
-  --space-section: clamp(4.5rem, 9vw, 9rem);  /* vertical rhythm between sections */
+  --space-section: clamp(2.75rem, 5.5vw, 5.5rem);
+  --space-section-sm: clamp(1.5rem, 3.25vw, 3rem);
+  --space-page: clamp(90px, 16vh, 200px);
 }
 
 
@@ -208,13 +226,6 @@
 /* ============================================
    Editorial layer
    ============================================ */
-
-@layer base {
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: none !important;
-  }
-}
 
 @layer components {
   .container-edge {
@@ -366,11 +377,6 @@
 
   .attr-track {
     animation: none !important;
-  }
-
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: auto !important;
   }
 }
 

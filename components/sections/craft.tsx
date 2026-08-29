@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Parallax } from "@/components/motion/parallax";
 import { Reveal, RevealWords } from "@/components/motion/reveal";
+import { Arrow } from "@/components/ui/arrow";
 import { Lozenge } from "@/components/ui/lozenge";
 import { cn } from "@/lib/utils";
 
@@ -154,7 +155,7 @@ const SERVICES: Service[] = [
 
 export function Services() {
   return (
-    <section className="gutter bg-paper pb-(--space-section) pt-[clamp(1.5rem,4vw,3rem)]">
+    <section className="gutter bg-paper pb-(--space-section) pt-(--space-section-sm)">
       <Reveal kind="fade" className="flex flex-col items-center text-center">
         <p className="label text-brand">
           Ways to Begin
@@ -194,14 +195,5 @@ function ServiceCard({ index, label, copy, cta, href }: Service) {
         <Arrow className="h-3.5 w-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" />
       </Link>
     </Reveal>
-  );
-}
-
-function Arrow({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.2} className={className}>
-      <line x1="2" y1="14" x2="14" y2="2" />
-      <polyline points="5 2 14 2 14 11" />
-    </svg>
   );
 }

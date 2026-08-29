@@ -220,10 +220,10 @@ function VideoSlide({ active }: { active: boolean }) {
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-12">
           {/* Left — eyebrow, headline, actions. */}
           <div className="max-w-[20ch] md:max-w-[48%]">
-            <p className="label text-gold [text-shadow:0_1px_10px_rgba(20,16,13,0.6)]">
+            <p className="label text-gold [text-shadow:0_1px_10px_rgb(var(--color-umber-rgb)_/_0.6)]">
               Luxury Pret
             </p>
-            <h2 className="statement mt-4 text-pretty text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.0] text-paper [text-shadow:0_2px_24px_rgba(20,16,13,0.5)]">
+            <h2 className="statement mt-4 text-pretty text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.0] text-paper [text-shadow:0_2px_24px_rgb(var(--color-umber-rgb)_/_0.5)]">
               Ready to wear,
               <br />
               worked by hand
@@ -240,7 +240,7 @@ function VideoSlide({ active }: { active: boolean }) {
           </div>
 
           {/* Right — the standfirst, set opposite the headline. */}
-          <p className="max-w-[36ch] font-body text-body font-light leading-[1.75] text-paper/85 md:text-right [text-shadow:0_1px_12px_rgba(20,16,13,0.6)]">
+          <p className="max-w-[36ch] font-body text-body font-light leading-[1.75] text-paper/85 md:text-right [text-shadow:0_1px_12px_rgb(var(--color-umber-rgb)_/_0.6)]">
             Couture hands on everyday silhouettes — organza, drape and thread
             work, finished to the standard of the made-to-order floor.
           </p>

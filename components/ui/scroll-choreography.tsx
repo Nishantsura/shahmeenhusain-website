@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 
+import { Arrow } from "@/components/ui/arrow";
 import { ARCH_D_UNIT, openArch } from "@/lib/arch";
 import { cn } from "@/lib/utils";
 
@@ -210,7 +211,7 @@ export function ScrollChoreography({
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(52% 42% at 50% 50%, rgba(20,16,13,0.62) 0%, rgba(20,16,13,0.32) 58%, rgba(20,16,13,0) 84%)",
+                    "radial-gradient(52% 42% at 50% 50%, rgb(var(--color-umber-rgb) / 0.62) 0%, rgb(var(--color-umber-rgb) / 0.32) 58%, rgb(var(--color-umber-rgb) / 0) 84%)",
                 }}
               />
               <motion.div style={{ y: coverY }} className="relative flex flex-col items-center px-6">
@@ -223,16 +224,7 @@ export function ScrollChoreography({
                   className="label group mt-7 inline-flex items-center gap-2.5 border-b border-paper/40 pb-1.5 font-light text-paper transition-colors hover:border-gold hover:text-gold"
                 >
                   {hero.cta ?? "Enter the collection"}
-                  <svg
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.2}
-                    className="h-3.5 w-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:-translate-y-1"
-                  >
-                    <line x1="2" y1="14" x2="14" y2="2" />
-                    <polyline points="5 2 14 2 14 11" />
-                  </svg>
+                  <Arrow className="h-3.5 w-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </motion.div>
             </motion.div>

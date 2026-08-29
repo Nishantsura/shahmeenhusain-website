@@ -67,10 +67,10 @@ export function CollectionGrid({ products }: { products: Product[] }) {
         </div>
 
         <Select value={sort} onValueChange={(v) => setSort(v as Sort)}>
-          <SelectTrigger className="label w-44 rounded-none border-rule">
+          <SelectTrigger className="label w-44 border-rule">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="rounded-none">
+          <SelectContent>
             <SelectItem value="featured">Featured</SelectItem>
             <SelectItem value="price-low">Price: Low to High</SelectItem>
             <SelectItem value="price-high">Price: High to Low</SelectItem>

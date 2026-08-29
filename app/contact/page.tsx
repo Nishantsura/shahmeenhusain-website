@@ -20,7 +20,7 @@ export default function ContactPage() {
         text="Whether you have a question about our collections, need styling advice, or wish to book a private appointment — we're here to help."
       />
 
-      <section className="pb-[clamp(90px,16vh,200px)]">
+      <section className="pb-(--space-page)">
         <div className="container-edge grid gap-16 md:grid-cols-2 md:gap-24">
           <Reveal>
             <ContactForm />

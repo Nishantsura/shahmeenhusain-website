@@ -52,3 +52,6 @@ Headless Shopify storefront on Next.js (App Router) + Tailwind v4 + shadcn/ui.
 ## Not wired up
 Search, the contact form and the newsletter are all cosmetic — they were
 in the previous site too. Each needs a real backend before launch.
+`components/sections/testimonials.tsx` also carries placeholder quotes —
+no client has supplied real testimonial copy yet; swap it in before
+launch.

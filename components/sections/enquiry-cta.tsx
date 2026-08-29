@@ -24,7 +24,7 @@ export function EnquiryCta({ image }: { image?: string }) {
 
   return (
     <section className="bg-panel text-paper">
-      <div className="gutter grid items-stretch gap-[clamp(2.5rem,5vw,4.5rem)] py-[clamp(3.5rem,7vw,6rem)] md:grid-cols-[0.9fr_1.1fr]">
+      <div className="gutter grid items-stretch gap-[clamp(2.5rem,5vw,4.5rem)] py-(--space-section) md:grid-cols-[0.9fr_1.1fr]">
         {/* The photograph, framed by an offset gold hairline. */}
         {image ? (
           <Reveal kind="fade" className="relative order-last md:order-first">

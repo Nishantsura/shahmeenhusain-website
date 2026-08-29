@@ -8,7 +8,6 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { getMenu } from "@/lib/shopify";
-import { Cursor } from "@/components/motion/cursor";
 import { Preloader } from "@/components/motion/preloader";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 
@@ -80,7 +79,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <CartProvider>
           <SmoothScroll>
             <Preloader />
-            <Cursor />
             <Header menu={menu} />
 
             {/* The footer is pinned behind the page, not appended to it.

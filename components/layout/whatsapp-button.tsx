@@ -25,7 +25,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="group fixed bottom-6 right-6 z-[900] flex h-14 items-center rounded-full border border-gold/50 bg-panel pl-[14px] pr-[14px] text-paper shadow-[0_10px_30px_rgba(20,16,13,0.28)] transition-[padding,border-color] duration-500 ease-out hover:border-gold hover:pr-6 md:bottom-9 md:right-9"
+      className="group fixed bottom-6 right-6 z-[900] flex h-14 items-center rounded-full border border-gold/50 bg-panel pl-[14px] pr-[14px] text-paper shadow-[0_10px_30px_rgb(var(--color-umber-rgb)_/_0.28)] transition-[padding,border-color] duration-500 ease-out hover:border-gold hover:pr-6 md:bottom-9 md:right-9"
     >
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="h-[26px] w-[26px] shrink-0">
         <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35Z" />
